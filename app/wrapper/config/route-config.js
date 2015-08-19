@@ -59,7 +59,6 @@ export default class RouteConfig {
                         Repository.load($stateParams.owner, $stateParams.repo).then((data) => {
                             AppState.currentRepo = data;
                             def.resolve(data);
-                            console.log(data);
                         });
                     } else {
                         def.resolve(AppState.currentRepo);
