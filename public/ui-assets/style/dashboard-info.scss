@@ -1,0 +1,31 @@
+.dashboard-info {
+  position: relative;
+  max-width: 500px;
+
+  .description {
+    position: absolute;
+    overflow: scroll;
+    bottom: 5px;
+    top: 252px;
+    right: 10px;
+    left: 17px;
+  }
+
+  .list-thumb {
+    max-width: 97px;
+    height: 97px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .badge {
+    margin-bottom: 3px;
+    margin-top: 29px;
+    font-size: 20px;
+    padding-top: 5px;
+  }
+
+  .table {
+    margin-top: 20px;
+  }
+}

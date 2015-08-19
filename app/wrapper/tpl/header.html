@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!-- TODO: Disable this link until navigation is allowed -->
+			<a ui-sref="top.dashboard" ng-class="{disabled: hc.enabled == false}" class="header-navbar-logo">BlackSwan Test</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li ng-class="{active: hc.$state.includes(tab.root), disabled: hc.enabled == false}" ng-repeat="tab in hc.mainNavData">
+					<a href="" ng-click="hc.navigateTo(tab)">
+						{{tab.label}}
+					</a>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-right container-max-z-index" role="search">
+				<div class="form-group">
+					<input type="text" ng-model="hc.selectedRepo" placeholder="Repository Name"
+						   typeahead="repository as repository.full_name for repository in hc.getRepositories($viewValue)"
+						   typeahead-loading="loadingLocations"
+						   typeahead-no-results="noResults"
+						   typeahead-wait-ms="500"
+						   typeahead-min-length="3"
+						   typeahead-select-on-blur="true"
+						   typeahead-on-select="hc.selectRepo($item, $model, $label)"
+						   class="form-control">
+					<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+					<div ng-show="noResults" class="no-results">
+						<i class="glyphicon glyphicon-remove"></i> No Results Found
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</nav>

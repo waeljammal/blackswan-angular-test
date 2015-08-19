@@ -1,0 +1,35 @@
+<div class="container-main container-vbox" id="dashboard-container">
+    <div class="container-main container-hbox">
+        <panel title-label="Statistics" class="container-main container-vbox">
+            <statistics data="dc.data" labels="dc.labels" repo="dc.repo"></statistics>
+        </panel>
+        <div style="margin-right: 10px"></div>
+        <panel title-label="Info" class="container-main container-vbox dashboard-info">
+            <div class="container-hbox ">
+                <img ng-src="{{dc.repo.owner.avatar_url}}" class="img-rounded list-thumb">
+                <span class="container-vbox">
+                    <span><b>{{dc.repo.owner.login}}</b></span>
+                    <span>last update: {{dc.repo.updated_at | date:'MM/dd/yyyy @ h:mma'}}</span>
+                    <a href="{{dc.repo.html_url}}" target="_blank"><span class="badge">View On Github</span></a>
+                </span>
+            </div>
+
+            <span>{{dc.repo.description}}</span>
+
+            <table class="table">
+                <tr>
+                    <th>Open Issues</th>
+                    <th>Size</th>
+                    <th>Subscribers</th>
+                    <th>Watchers</th>
+                </tr>
+                <tr>
+                    <td>{{dc.repo.open_issues}}</td>
+                    <td>{{dc.repo.size | bytes}}</td>
+                    <td>{{dc.repo.subscribers_count}}</td>
+                    <td>{{dc.repo.watchers_count}}</td>
+                </tr>
+            </table>
+        </panel>
+    </div>
+</div>

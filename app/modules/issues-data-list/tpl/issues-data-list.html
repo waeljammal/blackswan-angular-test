@@ -1,0 +1,14 @@
+<div class="list-group">
+    <a href="" class="list-group-item"
+       ng-repeat="item in data"
+       ng-class="{active: item.id == selectedItem.id}"
+       ng-click="onSelect(item)">
+        <div class="container-hbox">
+            <img ng-src="{{item.user.avatar_url}}" class="img-rounded list-thumb">
+            <span class="container-vbox">
+                <span><b>{{item.user.login}}</b></span>
+                <span>{{item.title}}</span>
+            </span>
+        </div>
+    </a>
+</div>

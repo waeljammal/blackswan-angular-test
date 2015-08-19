@@ -1,0 +1,26 @@
+<form>
+    <div class="form-group">
+        <div class="container-hbox ">
+            <img ng-src="{{data.user.avatar_url}}" class="img-rounded list-thumb">
+            <span class="container-vbox">
+                <span><b>{{data.user.login}}</b></span>
+                <span>status: {{data.state}}</span>
+                <span>comments: {{data.comments}}</span>
+                <span>last update: {{data.updated_at | date:'MM/dd/yyyy @ h:mma'}}</span>
+                <a href="{{data.html_url}}" target="_blank"><span class="badge">View On Github</span></a>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Issue</label>
+        <br/>
+        <span>{{data.title}}</span>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <br/>
+        <div class="description">
+            <span btf-markdown="data.body"></span>
+        </div>
+    </div>
+</form>
