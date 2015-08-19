@@ -54,7 +54,6 @@ export default class IssuesService {
         }, (data) => {
             this.issueList = data;
             def.resolve(data);
-            console.log(data);
         });
 
         return def.promise;
