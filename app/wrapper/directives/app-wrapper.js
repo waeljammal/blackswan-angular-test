@@ -12,8 +12,6 @@ export default class ViewportDirective extends Directive {
         this.restrict = 'AE';
         this.transclude = false;
         this.replace = false;
-        this.controller = require('../controller/app-wrapper');
-        this.controllerAs = 'awc';
     }
 
     link(scope, element, attrs, ctrl) {

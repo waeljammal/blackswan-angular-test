@@ -145,9 +145,9 @@ export default class NavManagerService {
     /**
      * Registers a main navigation entry
      *
-     * @param label Label to display
-     * @param path Path to navigate to
-     * @param root The root path this entry belongs to (top level parent)
+     * @param label {string} Label to display
+     * @param path {string} Path to navigate to
+     * @param root {string} The root path this entry belongs to (top level parent)
      */
     registerMain(label, path, root) {
         let entry = new NavItem(label, path, root);

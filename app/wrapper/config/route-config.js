@@ -29,9 +29,6 @@ export default class RouteConfig {
                 },
                 'header@': {
                     template: '<header-view></header-view>'
-                },
-                'footer@': {
-                    template: '<footer-view></footer-view>'
                 }
             },
             resolve: {

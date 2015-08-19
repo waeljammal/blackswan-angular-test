@@ -1,15 +1,14 @@
 /**
- * Created by Wael on 17/08/15.
+ * Used to load a single repository from the Google public API.
  */
 
 /* @ngInject */
 export default class RepositoryService {
     constructor($q, $resource) {
+        /** @private **/
         this.$q = $q;
 
-        this.repositories = [];
-
-        this.resource = $resource('https://api.github.com/repos/:owner/:repo', {
+        this._resource = $resource('https://api.github.com/repos/:owner/:repo', {
             owner: '@owner',
             repo: '@repo'
         }, {
@@ -17,10 +16,17 @@ export default class RepositoryService {
         });
     }
 
+    /**
+     * Loads a single repository.
+     *
+     * @param owner {string} Owner of the repository.
+     * @param repo {string} Name of the repository.
+     * @returns {Promise<Object, Error>} Containing repository information.
+     */
     load(owner, repo) {
         let def = this.$q.defer();
 
-        this.resource.query({
+        this._resource.query({
             owner: owner,
             repo: repo
         }, (data) => {

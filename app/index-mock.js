@@ -1,7 +1,7 @@
 /**
  * @author Wael Jammal
  *
- * The main entry point for the app.
+ * The main entry point for the app using mocks.
  */
 import Bootstrap from './common/globals/bootstrap';
 

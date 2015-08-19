@@ -1,20 +1,19 @@
 /**
- * Issues Controller
+ * Issues Controller glues together all the used modules.
  */
 /* @ngInject */
 export default class IssuesController {
     constructor($state, Issues, NavManager) {
         this._service = Issues;
         this._nav = NavManager;
-        this.labels = [];
-        this.data = [];
 
+        /** @private **/
         this.$state = $state;
 
         /**
          * Expose issue selection method and maintain current function scope.
          *
-         * @param d
+         * @param d {Object} Issue.
          */
         this.selectIssue = (d) => {this.doSelectIssue(d);};
     }
@@ -22,7 +21,7 @@ export default class IssuesController {
     /**
      * Sets the selected issue.
      *
-     * @param issue
+     * @param issue {Object|undefined}
      */
     set selectedIssue(issue) {
         this._service.currentIssue = issue;
@@ -31,7 +30,7 @@ export default class IssuesController {
     /**
      * Returns the selected issue.
      *
-     * @returns {*}
+     * @returns {Object|undefined}
      */
     get selectedIssue() {
         return this._service.currentIssue;
@@ -40,7 +39,7 @@ export default class IssuesController {
     /**
      * Returns all issues.
      *
-     * @returns {Array|*}
+     * @returns {Object[]} Array of issues.
      */
     get issues() {
         return this._service.issueList;
@@ -49,7 +48,9 @@ export default class IssuesController {
     /**
      * Handles issue selection.
      *
-     * @param issue
+     * Redirects to the top.repo.issues.issue state.
+     *
+     * @param issue {Object} Selected Issue.
      */
     doSelectIssue(issue) {
         let params = this._nav.getParams(this.$state.current.name);
@@ -60,13 +61,6 @@ export default class IssuesController {
             params,
             {reload: false, inherit: true, notify: true, location: 'replace'}
         );
-    }
-
-    /**
-     * Loads all issues.
-     */
-    update() {
-        this._service.loadAll();
     }
 }
 

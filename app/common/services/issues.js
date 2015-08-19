@@ -1,22 +1,19 @@
 /**
- * Created by Wael on 17/08/15.
+ * This services provides functions to load all issues for the active
+ * repository or to find a single issue from an existing list.
  */
 
 /* @ngInject */
 export default class IssuesService {
     constructor($resource, $q, AppState) {
-        this._state = AppState;
-
+        /**
+         * @private
+         */
         this.$q = $q;
 
-        this.currentIssue = null;
-        this.issueList = [];
-        this.issueListState = 'open';
-        this.issueListSort = 'created';
-        this.issueListDirection = 'desc';
-        this.issueListPage = 1;
+        this._state = AppState;
 
-        this.issuesResource = $resource('https://api.github.com/repos/:login/:name/issues/:number', {
+        this._issuesResource = $resource('https://api.github.com/repos/:login/:name/issues/:number', {
             name: '@name',
             number: '@number',
             login: '@login'
@@ -28,8 +25,54 @@ export default class IssuesService {
                 }
             }
         });
+
+        /**
+         * Current Issue
+         * @type {Object}
+         */
+        this.currentIssue = null;
+
+        /**
+         * All Issues
+         * @type {Object[]}
+         */
+        this.issueList = [];
+
+        /**
+         * What state to use for the issues.
+         *
+         * @type {string}
+         */
+        this.issueListState = 'open';
+
+        /**
+         * Sorts by created date.
+         *
+         * @type {string}
+         */
+        this.issueListSort = 'created';
+
+        /**
+         * Sorts in descending order.
+         *
+         * @type {string}
+         */
+        this.issueListDirection = 'desc';
+
+        /**
+         * The current page number.
+         *
+         * @type {number}
+         */
+        this.issueListPage = 1;
     }
 
+    /**
+     * Returns a single issue or undefined if no issue was found.
+     *
+     * @param id {string} Id of the issue
+     * @returns {Object}
+     */
     find(id) {
         for(let i = 0; i < this.issueList.length; i++) {
             if(this.issueList[i].id.toString() === id) {
@@ -40,10 +83,15 @@ export default class IssuesService {
         return undefined;
     }
 
+    /**
+     * Loads all issues for the active repository.
+     *
+     * @returns {Object[]}
+     */
     loadAll() {
         let def = this.$q.defer();
 
-        this.issuesResource.query({
+        this._issuesResource.query({
             state: this.issueListState,
             sort: this.issueListSort,
             direction: this.issueListDirection,

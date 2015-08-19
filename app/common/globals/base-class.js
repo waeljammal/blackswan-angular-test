@@ -1,5 +1,4 @@
 /**
- *
  * A base class with some helpers, it's not mandatory but you can use this
  * to share code accross all your classes, things such as tweening etc.
  *

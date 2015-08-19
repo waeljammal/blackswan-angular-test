@@ -1,4 +1,3 @@
-// Reads in all the mocks
 let moduleName = 'mocks';
 
 angular.module(moduleName, []);

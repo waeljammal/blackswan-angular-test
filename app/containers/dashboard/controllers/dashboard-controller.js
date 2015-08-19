@@ -1,5 +1,5 @@
 /**
- * Dashboard Controller
+ * Dashboard Controller glues all the different modules together.
  */
 /* @ngInject */
 export default class DashboardController {
@@ -7,21 +7,31 @@ export default class DashboardController {
         this._appState = AppState;
         this._msgBus = MsgBus;
         this._service = Search;
+
+        /**
+         * Labels used for the charts.
+         * @type {string[]}
+         */
         this.labels = [];
+
+        /**
+         * Data used for the charts.
+         * @type {number[]}
+         */
         this.data = [];
 
         // Listen for repo changes
         this._msgBus.onMsg(AppState.REPO_CHANGE_EVENT, (e, d) => {this.updateCharts(d);}, $scope);
 
-        // Make sure charts are up to date on entry,
-        // data is already resolved by the router.
+        // Make sure charts are up to date on entry.
+        // The data is already resolved by the router at this point.
         this.updateCharts(AppState.currentRepo);
     }
 
     /**
      * Returns the current repository.
      *
-     * @returns {*}
+     * @returns {Object|undefined}
      */
     get repo() {
         return this._appState.currentRepo;
@@ -30,7 +40,7 @@ export default class DashboardController {
     /**
      * Updates the chart data.
      *
-     * @param data
+     * @param data {Object} Repository.
      */
     updateCharts(data) {
         if(data === undefined) {

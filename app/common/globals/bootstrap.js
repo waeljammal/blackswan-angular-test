@@ -1,13 +1,17 @@
 /**
- * Helps with boostraping, is currently used to bootstrap both the
+ * Compiles the SCSS style sheets into the bundle.
+ * This alias is defined in the webpack configuration.
+ */
+require('style');
+
+/**
+ * Helps with bootstrapping, it is currently used to bootstrap both the
  * main entry and the mock entry, you can use add to include extra
  * dependencies.
  *
  * @author Wael Jammal
  * @access public
  */
-require('style');
-
 export default class Bootstrap {
     /**
      * Initializes the dependencies array
