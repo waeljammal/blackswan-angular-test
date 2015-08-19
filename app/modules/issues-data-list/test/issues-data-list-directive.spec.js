@@ -38,12 +38,10 @@ describe('Test Issues List Directive', function() {
     it('Should contain 2 rows', function() {
         let links = $(element.find('a'));
         expect(links.length).toBe(2);
-        //expect(button.eq(0)).toHaveAttr('disabled', 'disabled');
     });
 
     it('First link should be active', function() {
         let links = $(element.find('a'));
         expect(links[0]).toHaveClass('active');
-        //expect(button.eq(0)).toHaveAttr('disabled', 'disabled');
     });
 });
