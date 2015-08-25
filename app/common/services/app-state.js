@@ -8,6 +8,7 @@ export default class AppStateService {
     constructor(MsgBus) {
         this._currentRepo = undefined;
         this._msgBus = MsgBus;
+        this._isLoading = false;
     }
 
     /**
@@ -46,6 +47,14 @@ export default class AppStateService {
      */
     get currentRepo() {
         return this._currentRepo;
+    }
+
+    get isLoading() {
+        return this._isLoading;
+    }
+
+    set isLoading(value) {
+        this._isLoading = value;
     }
 }
 

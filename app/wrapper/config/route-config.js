@@ -47,18 +47,30 @@ export default class RouteConfig {
             sticky: false,
             deepStateRedirect: false,
             resolve: {
-                resolveRepo: function(preLoad, $stateParams, $q, Search, AppState, Repository) {
+                resolveRepo: function(preLoad, $stateParams, $q, Search, AppState, Repository, Issues) {
                     let def = $q.defer();
 
+                    // Check if we already have this repo
                     AppState.currentRepo = Search.find($stateParams.owner + '/' + $stateParams.repo);
 
+                    // If not make a request to load it
                     if(AppState.currentRepo === undefined) {
+                        AppState.isLoading = true;
+                        // Load the Repo
                         Repository.load($stateParams.owner, $stateParams.repo).then((data) => {
                             AppState.currentRepo = data;
-                            def.resolve(data);
+                            AppState.isLoading = false;
+                        }).then(() => {
+                            // Then load the issues
+                            Issues.loadAll().then(() => {
+                                def.resolve();
+                            });
                         });
                     } else {
-                        def.resolve(AppState.currentRepo);
+                        // We have the repo but we need the issues.
+                        Issues.loadAll().then(() => {
+                            def.resolve();
+                        });
                     }
 
                     return def.promise;

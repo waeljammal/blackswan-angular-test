@@ -4,8 +4,19 @@
     <header ui-view="header"></header>
 
     <!-- content: main ui-view -->
-    <section class="container-main container-hbox container-margin-10 container-margin-top" id="content-view">
+    <section class="container-main container-hbox container-margin-10 container-margin-top" id="content-view" ng-if="state.isLoading == false && state.currentRepo != null">
         <div ui-view="layout" class="container-main container-hbox"></div>
+    </section>
+
+    <!-- content: messages view -->
+    <section class="container-main container-hbox container-margin-10 container-margin-top" ng-show="state.currentRepo == null">
+        <div class="container-main container-hbox container-center-block" ng-show="state.currentRepo == null && state.isLoading == false">
+            <label>Begin by typing in a search term in the box located at the top right.</label>
+        </div>
+
+        <div class="container-main container-hbox container-center-block" ng-if="state.isLoading == true">
+            <label>Please wait while data is loaded</label>
+        </div>
     </section>
 </div>
 <!-- /content -->

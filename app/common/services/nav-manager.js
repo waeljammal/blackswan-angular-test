@@ -143,6 +143,20 @@ export default class NavManagerService {
     }
 
     /**
+     * Updates the last parameters for the given state
+     *
+     * @param {string} state State to update
+     * @param {Object} params New parameters
+     */
+    deleteParams(state) {
+        delete(this.params[state]);
+    }
+
+    deleteAllParams() {
+        this.params = {};
+    }
+
+    /**
      * Registers a main navigation entry
      *
      * @param label {string} Label to display

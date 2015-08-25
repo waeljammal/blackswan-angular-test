@@ -5,10 +5,11 @@
 html, body {
   width: 100%;
   min-width: 1024px;
+  min-height: 795px;
   height: 100%;
   margin: 0;
   padding: 0pt;
-  overflow: hidden;
+  overflow: scroll;
   font-family: 'PT Sans', sans-serif;
 }
 
@@ -32,6 +33,10 @@ html, body {
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.chart-container {
+
 }
 
 .container-center-block {

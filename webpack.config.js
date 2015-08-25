@@ -124,6 +124,9 @@ module.exports = {
     ]
 };
 
+/**
+ * Looks up all available modules and creates a mapping for each one.
+ */
 function ModuleReplacementPlugin () {
     this.resourceRegExp = [];
 
@@ -137,6 +140,12 @@ function ModuleReplacementPlugin () {
     }
 }
 
+/**
+ * <p>Allows custom path resolving.</p>
+ *
+ * eg.<br/>
+ * myModule will resolve to the /app/modules folder
+ */
 ModuleReplacementPlugin.prototype.apply = function (compiler) {
     var resourceRegExp = this.resourceRegExp;
     compiler.plugin("normal-module-factory", function (nmf) {

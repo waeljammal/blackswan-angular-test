@@ -5,8 +5,10 @@ import Directive from 'directive';
  */
 /* @ngInject */
 export default class ViewportDirective extends Directive {
-    constructor() {
+    constructor(AppState) {
         super();
+
+        this._appstate = AppState;
 
         this.template = require('./../tpl/app-wrapper.html');
         this.restrict = 'AE';
@@ -15,7 +17,7 @@ export default class ViewportDirective extends Directive {
     }
 
     link(scope, element, attrs, ctrl) {
-
+        scope.state = this._appstate;
     }
 }
 

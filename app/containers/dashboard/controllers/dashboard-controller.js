@@ -3,10 +3,26 @@
  */
 /* @ngInject */
 export default class DashboardController {
-    constructor($scope, MsgBus, AppState, Search) {
+    constructor($scope, $state, MsgBus, AppState, Search, Issues, NavManager) {
+        /** @private **/
         this._appState = AppState;
+        /** @private **/
         this._msgBus = MsgBus;
+        /** @private **/
         this._service = Search;
+        /** @private **/
+        this._service = Issues;
+        /** @private **/
+        this._nav = NavManager;
+        /** @private **/
+        this.$state = $state;
+
+        /**
+         * Expose issue selection method and maintain current function scope.
+         *
+         * @param d {Object} Issue.
+         */
+        this.selectIssue = (d) => {this.doSelectIssue(d);};
 
         /**
          * Labels used for the charts.
@@ -38,6 +54,51 @@ export default class DashboardController {
     }
 
     /**
+     * Sets the selected issue.
+     *
+     * @param issue {Object|undefined}
+     */
+    set selectedIssue(issue) {
+        this._service.currentIssue = issue;
+    }
+
+    /**
+     * Returns the selected issue.
+     *
+     * @returns {Object|undefined}
+     */
+    get selectedIssue() {
+        return this._service.currentIssue;
+    }
+
+    /**
+     * Returns all issues.
+     *
+     * @returns {Object[]} Array of issues.
+     */
+    get issues() {
+        return this._service.issueList;
+    }
+
+    /**
+     * Handles issue selection.
+     *
+     * Redirects to the top.repo.issues.issue state.
+     *
+     * @param issue {Object} Selected Issue.
+     */
+    doSelectIssue(issue) {
+        let params = this._nav.getParams(this.$state.current.name);
+        params.issue = issue.id.toString();
+
+        this.$state.transitionTo(
+            'top.repo.issues.issue',
+            params,
+            {reload: false, inherit: true, notify: true, location: 'replace'}
+        );
+    }
+
+    /**
      * Updates the chart data.
      *
      * @param data {Object} Repository.
@@ -48,11 +109,10 @@ export default class DashboardController {
         }
 
         this.labels =['Forks', 'Star Gazers', 'Watchers', 'Open Issues'];
-        this.data = [
+        this.data =
             /*jshint camelcase: false */
-            [data.forks, data.stargazers_count, data.watchers, data.open_issues]
+            [data.forks, data.stargazers_count, data.watchers, data.open_issues];
             /*jshint camelcase: true */
-        ];
     }
 
 }
