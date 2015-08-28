@@ -1,8 +1,19 @@
 /**
  * Represents a navigation state
  */
-/* @ngInject */
+
+import {inject, service} from '../globals/decorators/decorators'
+
+@service()
 export class NavItem {
+
+    public label:string;
+    public path:string;
+    public root:string;
+
+    private _children = [];
+    private currentRoute = undefined;
+
     constructor(label, path, root) {
         this.label = label;
         this.path = path;
@@ -39,16 +50,33 @@ export class NavItem {
  * Provides utilities for managing navigation state and remembering parameters.
  */
 export default class NavManagerService {
+
+    /** @private **/
+    @inject('Storage')
+    private storage;
+
+    /** @private **/
+    @inject()
+    private $rootScope;
+
+    /** @private **/
+    private _mainNav = [];
+    /** @private **/
+    private params = {};
+    /** @private **/
+    private _mainNavVisible = false;
+    /** @private **/
+    private _subNavVisible = false;
+    /** @private **/
+    private _enabled = true;
+
     /**
      * Sets up default paramater values
      *
      * @param {Object} $rootScope
      * @param {Storage} Storage
      */
-    constructor($rootScope, Storage) {
-
-        /** @private **/
-        this.storage = Storage;
+    constructor() {
         /** @private **/
         this._mainNav = [];
         /** @private **/
@@ -59,8 +87,6 @@ export default class NavManagerService {
         this._subNavVisible = false;
         /** @private **/
         this._enabled = true;
-        /** @private **/
-        this.$rootScope = $rootScope;
     }
 
     /**

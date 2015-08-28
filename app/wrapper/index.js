@@ -27,7 +27,7 @@ angular.module(moduleName, [
 // Site Header
 .directive('headerView', () => { return new HeaderDirective(); })
 // Content view layout
-.directive('appWrapper', (AppState) => { return new ViewportDirective(AppState); })
+.directive('appWrapper', ViewportDirective)
 
 // Run Phase
 .run(PluginRun)

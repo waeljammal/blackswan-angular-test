@@ -10,10 +10,10 @@ export default class RouteConfig {
     constructor($stateProvider) {
         $stateProvider.state('top.repo.issues', {
             url: '/issues',
-            sticky: false,
+            sticky: true,
             deepStateRedirect: false,
             views: {
-                'contentView@top': {
+                'issues@top': {
                     template: require('./../tpl/issues.html'),
                     controller: require('./../controllers/issues-controller'),
                     controllerAs: 'ic'
@@ -46,7 +46,7 @@ export default class RouteConfig {
 
         $stateProvider.state('top.repo.issues.issue', {
             url: '/:issue',
-            sticky: false,
+            sticky: true,
             deepStateRedirect: false,
             resolve: {
                 setupIssue: function($stateParams, preLoad, AppState, Issues, setupIssues) {

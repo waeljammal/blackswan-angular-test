@@ -50,6 +50,11 @@ module.exports = {
                 exclude: /node_modules|bower_components|vendor/,
                 loader: 'webpack-traceur?runtime=true&sourceMaps&experimental=true!jshint'
             },
+            {
+                test: /\.ts$/,
+                loader: 'awesome-typescript-loader',
+                exclude: /node_modules|bower_components|vendor/
+            },
             {test: /[\/\\]angular.min\.js$/, loader: "exports?angular"},
             {test: /\.png$/, loader: 'url?mimetype=image/png'},
             {test: /\.html$/, loader: 'raw', exclude: /node_modules|bower_components|vendor/},
@@ -102,7 +107,7 @@ module.exports = {
             'chart': 'Chart.js/Chart.min.js',
             'showdown': 'showdown/compressed/Showdown.js'
         },
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.ts']
     },
     bail: false,
     plugins: [
@@ -110,7 +115,7 @@ module.exports = {
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.optimize.DedupePlugin(),
         new ComponentResolverPlugin(
-            ['js']
+            ['js', '.ts']
         ),
         new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
         new webpack.ProvidePlugin({

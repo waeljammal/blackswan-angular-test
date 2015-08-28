@@ -1,0 +1,1 @@
+// Type definitions for the base class.

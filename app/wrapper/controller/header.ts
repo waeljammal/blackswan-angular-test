@@ -1,23 +1,54 @@
+/// <reference path="../../../typings/_custom.d.ts" />
+
+import {inject, directive, controller, autobind} from '../../common/globals/decorators/decorators'
+
 /**
  * Global header controller for the site.
  */
-/* @ngInject */
-export default class HeaderController {
-    constructor($state, MsgBus, NavManager, Search, AppState) {
-        /** @private **/
-        this.$state = $state;
+@controller()
+class HeaderController {
 
-        this._nav = NavManager;
-        this._selectedRepo = undefined;
-        this._appState = AppState;
-        this._searchService = Search;
+    /** @private **/
+    @inject()
+    public $state;
 
+    @inject('NavManager')
+    private _nav;
+
+    @inject('AppState')
+    private _appState;
+
+    @inject('Search')
+    private _searchService;
+
+    @inject("MsgBus")
+    private _msgBus;
+
+    /**
+     * Handles repository searching.
+     */
+    public getRepositories:Function;
+
+    /**
+     * Handles repository selection.
+     */
+    public selectRepo:Function;
+
+    /**
+     * Selected Repository
+     */
+    public selectedRepo;
+
+    constructor() {
         // Listen for repo changes
-        MsgBus.onMsg(AppState.REPO_CHANGE_EVENT, (e, d) => {this.update(d);});
+        this._msgBus.onMsg(this._appState.REPO_CHANGE_EVENT, (e, d) => {this.update(d);});
 
         // Update on initialization, the router will have already
         // taken care of loading the repo if provided through the url.
-        this.update(AppState.currentRepo);
+        this.update(this._appState.currentRepo);
+
+        this.getRepositories = (value) => {return this.handleGetRepositories(value);}
+        this.selectRepo = ($item, $model, $label) => {this.handleSelectRepo($item, $model, $label);};
     }
 
     /**
@@ -63,24 +94,6 @@ export default class HeaderController {
      */
     get mainNavData() {
         return this._nav.mainNav;
-    }
-
-    /**
-     * Returns the selected repository for the search input.
-     *
-     * @returns {undefined|Object}
-     */
-    get selectedRepo() {
-        return this._selectedRepo;
-    }
-
-    /**
-     * Sets the currently selected repository for the search input.
-     *
-     * @param {undefined|Object} value
-     */
-    set selectedRepo(value) {
-        this._selectedRepo = value;
     }
 
     /**
@@ -135,7 +148,7 @@ export default class HeaderController {
      * @param {string} term Partial or full name of repository.
      * @returns {*|Promise|Promise.<T>} Promise.
      */
-    getRepositories(term) {
+    handleGetRepositories(term) {
         return this._searchService.search(term).then((data) => {
             return data.map(function(item){
                 return item;
@@ -150,7 +163,7 @@ export default class HeaderController {
      * @param {Object} $model Current Model.
      * @param {string} $label Label of the selected repository.
      */
-    selectRepo($item, $model, $label) {
+    public handleSelectRepo($item, $model, $label) {
         let params = this._nav.getParams(this.$state.current.name);
         params.repo = $item.name;
         params.owner = $item.owner.login;

@@ -1,21 +1,29 @@
+/// <reference path="msg-bus.d.ts" />
+
 import BaseClass from '../globals/base-class';
+
+import {log, inject, service} from '../globals/decorators/decorators'
 
 /**
  * This bus allows you to register event listeners and emit
  * events from anywhere in your application.
  */
-/* @ngInject */
-export default class MsgBus extends BaseClass {
+@service()
+class MsgBus extends BaseClass implements IMsgBus {
+
+    /**
+     * @private
+     */
+    @inject()
+    private $rootScope;
+
     /**
      * Constructor.
      *
      * @param $rootScope
      */
-    constructor($rootScope) {
-        /**
-         * @private
-         */
-        this.$rootScope = $rootScope;
+    constructor() {
+        super();
     }
 
     /**
@@ -45,4 +53,4 @@ export default class MsgBus extends BaseClass {
     }
 }
 
-module.exports = MsgBus;
+export = MsgBus;

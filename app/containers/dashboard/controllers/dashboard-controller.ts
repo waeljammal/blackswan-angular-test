@@ -1,47 +1,74 @@
+/// <reference path="../../../../typings/_custom.d.ts" />
+
+import {log, inject, controller} from '../../../common/globals/decorators/decorators'
+
 /**
  * Dashboard Controller glues all the different modules together.
  */
-/* @ngInject */
-export default class DashboardController {
-    constructor($scope, $state, MsgBus, AppState, Search, Issues, NavManager) {
-        /** @private **/
-        this._appState = AppState;
-        /** @private **/
-        this._msgBus = MsgBus;
-        /** @private **/
-        this._service = Search;
-        /** @private **/
-        this._service = Issues;
-        /** @private **/
-        this._nav = NavManager;
-        /** @private **/
-        this.$state = $state;
+@controller()
+class DashboardController {
+    /**
+     * Chart Labels
+     */
+    public labels;
 
+    /**
+     * Chart Data
+     */
+    public data;
+
+    /**
+     * Handles issue selection
+     */
+    public selectIssue;
+
+    @inject('AppState')
+    private _appState;
+
+    @inject('MsgBus')
+    private _msgBus;
+
+    @inject('Search')
+    private _searchService;
+
+    @inject('Issues')
+    private _issuesService;
+
+    @inject('NavManager')
+    private _nav;
+
+    @inject()
+    private $state;
+
+    constructor($scope) {
         /**
          * Expose issue selection method and maintain current function scope.
          *
          * @param d {Object} Issue.
          */
-        this.selectIssue = (d) => {this.doSelectIssue(d);};
+        $scope.selectIssue = (d) => {this.doSelectIssue(d);};
 
         /**
          * Labels used for the charts.
          * @type {string[]}
          */
-        this.labels = [];
+        $scope.labels = [];
 
         /**
          * Data used for the charts.
          * @type {number[]}
          */
-        this.data = [];
+        $scope.data = [];
 
         // Listen for repo changes
-        this._msgBus.onMsg(AppState.REPO_CHANGE_EVENT, (e, d) => {this.updateCharts(d);}, $scope);
+        this._msgBus.onMsg(this._appState.REPO_CHANGE_EVENT, (e, d) => {this.updateCharts(d);}, $scope);
 
         // Make sure charts are up to date on entry.
         // The data is already resolved by the router at this point.
-        this.updateCharts(AppState.currentRepo);
+        this.updateCharts(this._appState.currentRepo);
+
+        // Register a public handler for issue selection.
+        this.selectIssue = (issue) => {this.doSelectIssue(issue);};
     }
 
     /**
@@ -59,7 +86,7 @@ export default class DashboardController {
      * @param issue {Object|undefined}
      */
     set selectedIssue(issue) {
-        this._service.currentIssue = issue;
+        this._issuesService.currentIssue = issue;
     }
 
     /**
@@ -68,7 +95,7 @@ export default class DashboardController {
      * @returns {Object|undefined}
      */
     get selectedIssue() {
-        return this._service.currentIssue;
+        return this._issuesService.currentIssue;
     }
 
     /**
@@ -77,7 +104,7 @@ export default class DashboardController {
      * @returns {Object[]} Array of issues.
      */
     get issues() {
-        return this._service.issueList;
+        return this._issuesService.issueList;
     }
 
     /**
@@ -87,7 +114,7 @@ export default class DashboardController {
      *
      * @param issue {Object} Selected Issue.
      */
-    doSelectIssue(issue) {
+    doSelectIssue (issue) {
         let params = this._nav.getParams(this.$state.current.name);
         params.issue = issue.id.toString();
 
@@ -117,4 +144,4 @@ export default class DashboardController {
 
 }
 
-module.exports = DashboardController;
+export = DashboardController;

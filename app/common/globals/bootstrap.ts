@@ -1,3 +1,5 @@
+/// <reference path="./bootstrap.d.ts" />
+
 /**
  * Compiles the SCSS style sheets into the bundle.
  * This alias is defined in the webpack configuration.
@@ -12,15 +14,14 @@ require('style');
  * @author Wael Jammal
  * @access public
  */
-export default class Bootstrap {
+class Bootstrap implements IBootstrap {
+
+    private dependencies:Array<string> = [];
+
     /**
      * Initializes the dependencies array
      */
     constructor() {
-        this.dependencies = [
-
-        ];
-
         this.add('ngResource');
         this.add('ui.router');
         this.add('ui.bootstrap');
@@ -34,7 +35,7 @@ export default class Bootstrap {
      * @param {Object} dependency
      * @returns {Bootstrap} Returns Self
      */
-    add(dependency) {
+    add(dependency:string) {
         this.dependencies.push(dependency);
         return this;
     }
@@ -49,4 +50,4 @@ export default class Bootstrap {
     }
 }
 
-module.exports = Bootstrap;
+export = Bootstrap;
