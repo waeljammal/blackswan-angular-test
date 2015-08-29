@@ -5,7 +5,7 @@
 
     ])
 
-        .directive('issuesDataList', [require('./directives/issues-data-list')]);
+    .directive('issuesDataList', [require('./directives/issues-data-list')]);
 
     module.exports = moduleName;
 })();

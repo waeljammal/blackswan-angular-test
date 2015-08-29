@@ -1,14 +1,14 @@
 /**
  * A helper service for storing and retrieving data from the browser database.
  */
-class StorageService {
+class StorageService implements IStorage {
     /**
      * Get a value from the database.
      *
      * @param {string} key Value Key
      * @returns {Object|string}
      */
-    get(key) {
+    get(key: string): Object|string {
         let item = localStorage.getItem(key);
 
         if (item) {
@@ -16,25 +16,25 @@ class StorageService {
             return item;
         }
 
-        return undefined;
+        return item;
     }
 
     /**
      * Insert/Replace an entry in the database.
      *
-     * @param {string} key The key to use.
-     * @param {string} data The value to store.
+     * @param key The key to use.
+     * @param data The value to store.
      */
-    save(key, data) {
+    public save(key: string, data: string|Object): void {
         localStorage.setItem(key, JSON.stringify(data));
     }
 
     /**
      * Remove an entry from the database.
      *
-     * @param {string} key The key of the item to remove.
+     * @param key The key of the item to remove.
      */
-    remove(key) {
+    public remove(key: string): void {
         localStorage.removeItem(key);
     }
 

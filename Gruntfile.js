@@ -99,12 +99,12 @@ module.exports = function(grunt) {
                     {cwd: 'public', expand: true, src: '**/*.html', dest: 'target/'},
                     {cwd: 'public/scripts', expand: true, src: '**/*.js', dest: 'target/scripts'}
                 ]
-            },
-            docs: {
-                files: [
-                    {cwd: 'bower_components/font-awesome/fonts', expand: true, src: '**/*', dest: 'target/docs/user/fonts'}
-                ]
             }
+            //docs: {
+            //    files: [
+            //        {cwd: 'bower_components/font-awesome/fonts', expand: true, src: '**/*', dest: 'target/docs/user/fonts'}
+            //    ]
+            //}
         },
 
         cssmin: {
@@ -164,8 +164,8 @@ module.exports = function(grunt) {
 
         exec: {
             docs: {
-                cmd: 'esdoc -c esdoc.json',
-                stderr: false
+                cmd: 'typedoc --experimentalDecorators --module commonjs --target ES5 --out target/docs app/',
+                stderr: true
             }
         }
     });
@@ -177,11 +177,12 @@ module.exports = function(grunt) {
     grunt.registerTask("mock", ["parallel:mock"]);
 
     // Docs
-    grunt.registerTask("docs", ["exec:docs", "copy:docs"]);
+    grunt.registerTask("docs", ["exec:docs"]);
 
     // Production build
     grunt.registerTask("build", ["clean", "karma:build", "webpack:build", "copy", "docs", "cssmin", "uglify"]);
 
+    grunt.loadNpmTasks('grunt-typedoc');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');

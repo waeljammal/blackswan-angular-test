@@ -26,4 +26,3 @@ class HeaderDirective implements ng.IDirective {
 }
 
 module.exports = HeaderDirective;
-export = HeaderDirective;

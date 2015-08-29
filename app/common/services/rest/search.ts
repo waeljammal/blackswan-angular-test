@@ -6,14 +6,12 @@
 import {inject, service} from 'op/metadata';
 
 @service()
-class SearchService {
+class SearchService implements ISearchService {
     /**
      * List of all the repositories found using
      * the search(term) function.
-     *
-     * @type {Array} Array of repositories.
      */
-    public repositories: Array<any> = [];
+    public repositories: Array<IRepository> = [];
 
     @inject()
     private $q: ng.IQService;
@@ -25,9 +23,9 @@ class SearchService {
      * Returns a single repository.
      *
      * @param fullName Eg. angular/angular.
-     * @returns {Object|undefined} Repository or undefined.
+     * @returns Repository or undefined.
      */
-    find(fullName) {
+    find(fullName: string): IRepository {
         for (let i = 0; i < this.repositories.length; i++) {
             if (this.repositories[i].full_name === fullName) {
                 return this.repositories[i];
@@ -40,10 +38,10 @@ class SearchService {
     /**
      * Searches for a matching list of repositories using the term provided.
      *
-     * @param term {string} Partial or full name of a repository.
-     * @returns {Object[]} Array of repositories.
+     * @param term Partial or full name of a repository.
+     * @returns Array of repositories.
      */
-    search(term) {
+    search(term: string): ng.IPromise<Array<IRepository>> {
         let def = this.$q.defer();
 
         this.resource().query({

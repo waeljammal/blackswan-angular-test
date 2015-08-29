@@ -1,4 +1,4 @@
 interface IMsgBus {
     emitMsg(msg:string, data:any);
-    onMsg(msg:string, func:Function, scope?:ng.IScope);
+    onMsg(msg:string, listener: (event: ng.IAngularEvent, ...args: any[]) => any, scope?:ng.IScope);
 }

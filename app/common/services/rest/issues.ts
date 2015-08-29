@@ -11,15 +11,13 @@ import {inject, service} from 'op/metadata';
 class IssuesService implements IIssuesService {
     /**
      * Current Issue
-     * @type {Object}
      */
-    public currentIssue = null;
+    public currentIssue: IIssue = null;
 
     /**
      * All Issues
-     * @type {Object[]}
      */
-    public issueList = [];
+    public issueList: Array<IIssue> = [];
 
     /** @private **/
     @inject()
@@ -27,7 +25,7 @@ class IssuesService implements IIssuesService {
 
     /** @private **/
     @inject('AppState')
-    private _state;
+    private _state: IAppStateService;
 
     @inject()
     private $resource: ng.resource.IResourceService;
@@ -59,7 +57,7 @@ class IssuesService implements IIssuesService {
      * @param id {string} Id of the issue
      * @returns {Object}
      */
-    find(id) {
+    find(id: string): IIssue {
         for (let i = 0; i < this.issueList.length; i++) {
             if (this.issueList[i].id.toString() === id) {
                 return this.issueList[i];
@@ -74,7 +72,7 @@ class IssuesService implements IIssuesService {
      *
      * @returns {Object[]}
      */
-    loadAll() {
+    loadAll(): ng.IPromise<Array<IIssue>> {
         let def = this.$q.defer();
 
         this.resource().query({

@@ -6,3 +6,4 @@
 /// <reference path="jasmine/jasmine.d.ts" />
 /// <reference path="jasmine-jquery/jasmine-jquery.d.ts" />
 /// <reference path="angularjs/angular-resource.d.ts" />
+/// <reference path="angularjs/angular-route.d.ts" />

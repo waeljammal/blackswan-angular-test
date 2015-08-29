@@ -20,7 +20,9 @@ class RouteConfig {
                 }
             },
             resolve: {
-                setupIssues: function($state, $timeout, resolveRepo, AppState, Issues, NavManager) {
+                setupIssues: function($state, $timeout: ng.ITimeoutService, resolveRepo, AppState:
+                                      IAppStateService, Issues: IIssuesService, NavManager)
+                {
                     // We wont load issues or redirect if NavManager already contains params for issues.issue.
                     if (AppState.currentRepo && !NavManager.getParams('top.repo.issues.issue')) {
                         return Issues.loadAll().then((issues) => {
@@ -49,7 +51,7 @@ class RouteConfig {
             sticky: true,
             deepStateRedirect: false,
             resolve: {
-                setupIssue: function($stateParams, preLoad, AppState, Issues, setupIssues) {
+                setupIssue: function($stateParams: any, preLoad: any, AppState: IAppStateService, Issues, setupIssues: any) {
                     Issues.currentIssue = Issues.find($stateParams.issue);
                 }
             }

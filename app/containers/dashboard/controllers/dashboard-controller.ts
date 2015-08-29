@@ -8,29 +8,29 @@ class DashboardController {
     /**
      * Chart Labels
      */
-    public labels;
+    public labels: Array<string>;
 
     /**
      * Chart Data
      */
-    public data;
+    public data: Array<number>;
 
     /**
      * Handles issue selection
      */
-    public selectIssue;
+    public selectIssue: Function;
 
     @inject('AppState')
-    private _appState;
+    private _appState: IAppStateService;
 
     @inject('MsgBus')
-    private _msgBus;
+    private _msgBus: IMsgBus;
 
     @inject('Issues')
-    private _issuesService;
+    private _issuesService: IIssuesService;
 
     @inject('NavManager')
-    private _nav;
+    private _nav: any;
 
     @inject()
     private $state;
@@ -41,7 +41,7 @@ class DashboardController {
          *
          * @param d {Object} Issue.
          */
-        $scope.selectIssue = (d) => { this.doSelectIssue(d); };
+        $scope.selectIssue = (d: IIssue) => { this.doSelectIssue(d); };
 
         /**
          * Labels used for the charts.
@@ -71,25 +71,25 @@ class DashboardController {
      *
      * @returns {Object|undefined}
      */
-    get repo() {
+    get repo(): IRepository {
         return this._appState.currentRepo;
     }
 
     /**
      * Sets the selected issue.
      *
-     * @param issue {Object|undefined}
+     * @param issue Issue
      */
-    set selectedIssue(issue) {
+    set selectedIssue(issue: IIssue) {
         this._issuesService.currentIssue = issue;
     }
 
     /**
      * Returns the selected issue.
      *
-     * @returns {Object|undefined}
+     * @returns Returns selected issue
      */
-    get selectedIssue() {
+    get selectedIssue(): IIssue {
         return this._issuesService.currentIssue;
     }
 
@@ -98,7 +98,7 @@ class DashboardController {
      *
      * @returns {Object[]} Array of issues.
      */
-    get issues() {
+    get issues(): Array<IIssue> {
         return this._issuesService.issueList;
     }
 
@@ -107,9 +107,9 @@ class DashboardController {
      *
      * Redirects to the top.repo.issues.issue state.
      *
-     * @param issue {Object} Selected Issue.
+     * @param issue Selected Issue.
      */
-    doSelectIssue (issue) {
+    doSelectIssue (issue: IIssue): void {
         let params = this._nav.getParams(this.$state.current.name);
         params.issue = issue.id.toString();
 
@@ -125,7 +125,7 @@ class DashboardController {
      *
      * @param data {Object} Repository.
      */
-    updateCharts(data) {
+    updateCharts(data: IRepository) {
         if (data === undefined) {
             return;
         }

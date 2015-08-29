@@ -14,7 +14,7 @@ class IssuesController {
 
     /** @private **/
     @inject('Issues')
-    private _service;
+    private _service: IIssuesService;
 
     /** @private **/
     @inject('NavManager')
@@ -25,33 +25,33 @@ class IssuesController {
     private $state;
 
     constructor() {
-        this.selectIssue = (d) => { this.doSelectIssue(d); };
+        this.selectIssue = (d: IIssue) => { this.doSelectIssue(d); };
     }
 
     /**
      * Sets the selected issue.
      *
-     * @param issue {Object|undefined}
+     * @param issue IIssue
      */
-    set selectedIssue(issue) {
+    set selectedIssue(issue: IIssue) {
         this._service.currentIssue = issue;
     }
 
     /**
      * Returns the selected issue.
      *
-     * @returns {Object|undefined}
+     * @returns IIssue
      */
-    get selectedIssue() {
+    get selectedIssue(): IIssue {
         return this._service.currentIssue;
     }
 
     /**
      * Returns all issues.
      *
-     * @returns {Object[]} Array of issues.
+     * @returns Array of issues.
      */
-    get issues() {
+    get issues(): Array<IIssue> {
         return this._service.issueList;
     }
 
@@ -62,7 +62,7 @@ class IssuesController {
      *
      * @param issue {Object} Selected Issue.
      */
-    doSelectIssue(issue) {
+    doSelectIssue(issue: IIssue): void {
         let params = this._nav.getParams(this.$state.current.name);
         params.issue = issue.id.toString();
 

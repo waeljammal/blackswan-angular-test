@@ -23,9 +23,9 @@ class ViewportDirective implements ng.IDirective {
      * @private
      */
     @inject('AppState')
-    private _appState;
+    private _appState: IAppStateService;
 
-    link(scope, element, attrs, ctrl, transclude) {
+    link(scope) {
         scope.state = this._appState;
     }
 }

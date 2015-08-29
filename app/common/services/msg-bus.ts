@@ -10,7 +10,7 @@ class MsgBus implements IMsgBus {
      * @private
      */
     @inject()
-    private $rootScope;
+    private $rootScope: any;
 
     /**
      * Emits a message on the $rootScope.
@@ -30,7 +30,7 @@ class MsgBus implements IMsgBus {
      * @param func {Function} The callback function to invoke.
      * @param scope {$scope} Optional scope is used to unbind the listener on $destroy.
      */
-    onMsg(msg, func, scope) {
+    onMsg(msg: string, func: Function, scope?: ng.IScope) {
         let unbind = this.$rootScope.$on(msg, func);
 
         if (scope) {

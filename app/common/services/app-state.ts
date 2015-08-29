@@ -17,22 +17,21 @@ class AppStateService implements IAppStateService {
     /**
      * Currently selected repository.
      *
-     * @type {undefined}
+     * @type {IRepository}
      * @private
      */
-    private _currentRepo = undefined;
+    private _currentRepo: IRepository = undefined;
 
     /**
      * Handles messaging between components.
      */
     @inject('MsgBus')
-    private _msgBus;
+    private _msgBus: IMsgBus;
 
     /**
      * Name of the event fired when the repository changes.
      *
-     * @returns {string}
-     * @constructor
+     * @returns Event name
      */
     get REPO_CHANGE_EVENT(): string {
         return 'repoChangedEvent';
@@ -41,9 +40,9 @@ class AppStateService implements IAppStateService {
     /**
      * Sets the current repository
      *
-     * @param repo {undefined|object}
+     * @param repo Repository
      */
-    set currentRepo(repo) {
+    set currentRepo(repo: IRepository) {
         this._currentRepo = repo;
         this._msgBus.emitMsg(this.REPO_CHANGE_EVENT, repo);
     }
@@ -51,9 +50,9 @@ class AppStateService implements IAppStateService {
     /**
      * Returns the current repository.
      *
-     * @returns {undefined|object}
+     * @returns Repository
      */
-    get currentRepo() {
+    get currentRepo(): IRepository {
         return this._currentRepo;
     }
 }

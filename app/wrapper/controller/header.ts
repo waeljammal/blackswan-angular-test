@@ -23,23 +23,23 @@ class HeaderController {
     /**
      * Selected Repository
      */
-    public selectedRepo;
+    public selectedRepo: IRepository;
 
     /** @private **/
     @inject('NavManager')
-    private _nav;
+    private _nav: any;
 
     /** @private **/
     @inject('AppState')
-    private _appState;
+    private _appState: IAppStateService;
 
     /** @private **/
     @inject('Search')
-    private _searchService;
+    private _searchService: ISearchService;
 
     /** @private **/
     @inject('MsgBus')
-    private _msgBus;
+    private _msgBus: IMsgBus;
 
     constructor() {
         // Listen for repo changes
@@ -56,27 +56,27 @@ class HeaderController {
     /**
      * Returns true if navigation is enabled.
      *
-     * @returns {boolean} True if navigation is enabled
+     * @returns True if navigation is enabled
      */
-    get enabled() {
+    get enabled(): boolean {
         return this._nav.enabled && this.selectedRepo !== undefined;
     }
 
     /**
      * Returns true if main navigation is visible.
      *
-     * @returns {boolean} True if main navigation is visible
+     * @returns True if main navigation is visible
      */
-    get mainNavVisible() {
+    get mainNavVisible(): boolean {
         return this._nav.mainNavVisible;
     }
 
     /**
      * Returns true if sub navigation is visible.
      *
-     * @returns {boolean} True if sub navigation is visible
+     * @returns True if sub navigation is visible
      */
-    get subNavVisible() {
+    get subNavVisible(): boolean {
         return this._nav.subNavVisible;
     }
 
@@ -85,45 +85,45 @@ class HeaderController {
      *
      * @returns {string} Current path top.?
      */
-    get currentPath() {
+    get currentPath(): string {
         return this.$state.current.name;
     }
 
     /**
      * Returns navigation data for the main nav.
      *
-     * @returns {Object} Main navigation data
+     * @returns Main navigation data
      */
-    get mainNavData() {
+    get mainNavData(): Object {
         return this._nav.mainNav;
     }
 
     /**
      * Checks if the current path includes the given child
      *
-     * @param {string} child Child to check
-     * @returns {boolean} True if path contains child path
+     * @param child Child to check
+     * @returns True if path contains child path
      */
-    includesChild(child) {
+    includesChild(child: any): boolean {
         return this.$state.includes(child.path);
     }
 
     /**
      * Checks if the current path matches the given child
      *
-     * @param {string} child Child to check
-     * @returns {boolean} True if paths match
+     * @param child Child to check
+     * @returns True if paths match
      */
-    isChild(child) {
+    isChild(child: any): boolean {
         return this.$state.is(child.path);
     }
 
     /**
      * Invoked when the active repository changed.
      *
-     * @param {Object} data Repository.
+     * @param data IRepository.
      */
-    update(data) {
+    update(data: IRepository) {
         this.selectedRepo = data;
     }
 
@@ -132,7 +132,7 @@ class HeaderController {
      *
      * @param {Object} data Object containing the 'path'
      */
-    navigateTo(data) {
+    navigateTo(data: any) {
         if (!this.enabled) {
             return;
         }
@@ -150,9 +150,9 @@ class HeaderController {
      * @param {string} term Partial or full name of repository.
      * @returns {*|Promise|Promise.<T>} Promise.
      */
-    handleGetRepositories(term) {
-        return this._searchService.search(term).then((data) => {
-            return data.map(function(item){
+    handleGetRepositories(term: string): ng.IPromise<Array<IRepository>> {
+        return this._searchService.search(term).then((data: Array<IRepository>) => {
+            return data.map(function(item: IRepository){
                 return item;
             });
         });
@@ -161,11 +161,11 @@ class HeaderController {
     /**
      * Handles the selection of a repository from the search list.
      *
-     * @param {Object} $item Selected Repository.
-     * @param {Object} $model Current Model.
-     * @param {string} $label Label of the selected repository.
+     * @param $item Selected Repository.
+     * @param $model Current Model.
+     * @param $label Label of the selected repository.
      */
-    public handleSelectRepo($item, $model, $label) {
+    public handleSelectRepo($item: IRepository, $model: Object, $label: string) {
         let params = this._nav.getParams(this.$state.current.name);
         params.repo = $item.name;
         params.owner = $item.owner.login;

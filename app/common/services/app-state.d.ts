@@ -3,6 +3,6 @@
 interface IAppStateService {
     REPO_CHANGE_EVENT:string;
 
-    currentRepo:any;
-    isLoading:boolean;
+    currentRepo: IRepository;
+    isLoading: boolean;
 }

@@ -5,31 +5,32 @@ interface IIssuesResource {
 }
 
 interface IIssuesService {
-
     /**
      * Current Issue
-     * @type {Object}
      */
-    currentIssue;
+    currentIssue: IIssue;
 
     /**
      * All Issues
-     * @type {Object[]}
      */
-    issueList;
+    issueList: Array<IIssue>;
 
     /**
      * Returns a single issue or undefined if no issue was found.
      *
-     * @param id {string} Id of the issue
-     * @returns {Object}
+     * @param id Id of the issue
+     * @returns Issue
      */
-    find(id);
+    find(id: string): IIssue;
 
     /**
      * Loads all issues for the active repository.
      *
-     * @returns {Object[]}
+     * @returns All Issues
      */
-    loadAll();
+    loadAll(): ng.IPromise<Array<IIssue>>;
+}
+
+interface IIssue {
+    id: string;
 }

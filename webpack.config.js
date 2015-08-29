@@ -17,7 +17,6 @@ module.exports = {
             'angular',
             'angular-sanitize',
             'angular-ui-router',
-            'angular-aria',
             'angular-messages',
             'angular-chart',
             'angular-markdown',
@@ -45,18 +44,17 @@ module.exports = {
     module: {
         loaders: [
             {test: /jquery\.js$/, loader: 'expose?$' },
-            {
-                test: /\.js$/,
-                exclude: /node_modules|bower_components|vendor/,
-                loader: 'webpack-traceur?runtime=true&sourceMaps&experimental=true!jshint'
-            },
+            //{
+            //    test: /\.js$/,
+            //    exclude: /node_modules|bower_components|vendor/,
+            //    loader: 'webpack-traceur?runtime=true&sourceMaps&experimental=true'
+            //},
             {
                 test: /\.ts$/,
                 loader: 'ts-loader!tslint',
                 exclude: /node_modules|bower_components|vendor/
             },
             {test: /[\/\\]angular.min\.js$/, loader: "exports?angular"},
-            {test: /\.png$/, loader: 'url?mimetype=image/png'},
             {test: /\.html$/, loader: 'raw', exclude: /node_modules|bower_components|vendor/},
             {test: /\.css$/, loader: "style!css"},
             {test: /\.scss$/, loader: "style!css!sass"},
@@ -67,14 +65,7 @@ module.exports = {
         ],
         noParse: [
 
-        ],
-        jshint: {
-            // Display JSHint messages as webpack errors
-            emitErrors: true,
-
-            // fail the build on JSHInt errors
-            failOnHint: false
-        }
+        ]
     },
 
     amd: { 'jQuery': true },
@@ -91,12 +82,11 @@ module.exports = {
             'op/metadata': __dirname + "/app/common/globals/decorators/metadata.ts",
 
             'style': __dirname + "/public/ui-assets/style/main.scss",
-            'directive': __dirname + "/app/common/globals/directive.js",
-            'jquery': 'jquery/dist/jquery.js',
+
+            'jquery': 'jquery/dist/jquery.min.js',
             'jQueryUi': 'jquery-ui/jquery-ui.min.js',
             'angular': 'angular/angular.min.js',
             'angular-sanitize': 'angular-sanitize/angular-sanitize.min.js',
-            'angular-aria': 'angular-aria/angular-aria.min.js',
             'angular-markdown': 'angular-markdown-directive/markdown.js',
             'angular-chart': __dirname + '/vendor/angular-chart.js/dist/angular-chart.js',
             'angular-ui-router': 'angular-ui-router/release/angular-ui-router.min.js',

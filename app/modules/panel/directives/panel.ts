@@ -29,12 +29,12 @@ class PanelDirective implements ng.IDirective {
 
     /** @private **/
     @inject()
-    private $compile;
+    private $compile: any;
 
     /**
      * @private
      */
-    link(scope, element, attrs, ctrl, transclude) {
+    link(scope: any, element: ng.IRootElementService) {
         let actions = element.find('actions');
 
         if (actions.length > 0) {
