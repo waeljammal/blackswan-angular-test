@@ -5,7 +5,7 @@
  * repository or to find a single issue from an existing list.
  */
 
-import {log, inject, service} from '../globals/decorators/decorators'
+import {log, inject, service} from 'op/metadata'
 
 @service()
 class IssuesService implements IIssuesService {

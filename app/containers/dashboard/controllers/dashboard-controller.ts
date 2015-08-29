@@ -1,7 +1,4 @@
-/// <reference path="../../../../typings/_custom.d.ts" />
-//import {inject} from 'bsd'
-
-import {log, inject, controller} from '../../../common/globals/decorators/decorators'
+import {log, inject, controller} from 'op/metadata'
 
 /**
  * Dashboard Controller glues all the different modules together.

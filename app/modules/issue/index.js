@@ -6,6 +6,6 @@ angular.module(moduleName, [
 
 ])
 
-.directive('issue', () => {return new IssueDirective();});
+.directive('issue', IssueDirective);
 
 module.exports = moduleName;

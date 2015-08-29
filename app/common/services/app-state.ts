@@ -1,7 +1,6 @@
-/// <reference path="../../../typings/_custom.d.ts" />
 /// <reference path="./app-state.d.ts" />
 
-import {inject, service} from '../globals/decorators/decorators'
+import {inject, service} from 'op/metadata'
 
 /**
  * Stores the current app state.

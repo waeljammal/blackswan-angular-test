@@ -14,7 +14,14 @@
     "outDir": "dist"
   },
   "filesGlob": [
-    "./**/*.ts",
-    "!./node_modules/**/*.ts"
+    "./app/**/*.ts",
+    "!node_modules/**/*.ts"
+  ],
+  "files": [
+    "./app/typings/custom.d.ts",
+    "./app/index.ts",
+    "./app/common/globals/bootstrap.d.ts",
+    "./app/common/globals/decorators/metadata.d.ts",
+    "./app/common/globals/decorators/metadata.ts"
   ]
 }

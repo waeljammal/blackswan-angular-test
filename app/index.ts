@@ -3,10 +3,8 @@
  *
  * The main entry point for the app.
  */
-require('angular');
-
-import Bootstrap from './common/globals/bootstrap';
+let Bootstrap = require('./common/globals/bootstrap');
 
 // Global dependencies bootstrap
-let bootstrap = new Bootstrap();
+let bootstrap:IBootstrap = new Bootstrap();
 bootstrap.start();

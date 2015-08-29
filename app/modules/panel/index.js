@@ -6,6 +6,6 @@ angular.module(moduleName, [
 
 ])
 
-.directive('panel', ($compile) => {return new PanelDirective($compile);});
+.directive('panel', PanelDirective);
 
 module.exports = moduleName;

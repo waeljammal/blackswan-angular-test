@@ -1,4 +1,4 @@
-import {log, inject, service} from '../globals/decorators/decorators'
+import {log, inject, service} from 'op/metadata'
 
 /**
  * Used to load a single repository from the Google public API.
@@ -15,7 +15,7 @@ class RepositoryService {
     constructor() {
     }
 
-    private resource():IIssuesResource {
+    private resource():ng.resource.IResourceClass<any> {
         var baseApi:string = "https://api.github.com/repos/:owner/:repo";
         var params: any = {owner: '@owner', repo: '@repo'};
 
@@ -27,20 +27,8 @@ class RepositoryService {
             }
         };
 
-        var getIssueAction: ng.resource.IActionDescriptor = {
-            method: "GET",
-            isArray: true,
-            params: {
-                number: 0
-            },
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
-        };
-
-        return <IIssuesResource> this.$resource(baseApi, params, {
-            query: queryAction,
-            getIssue: getIssueAction
+        return <ng.resource.IResourceClass<any>> this.$resource(baseApi, params, {
+            query: queryAction
         });
     }
 

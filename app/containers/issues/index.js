@@ -3,9 +3,9 @@ import RouteConfig from './config/route-config';
 let moduleName = 'issuesModule';
 
 angular.module(moduleName, [
-    require('issues-data-list'),
-    require('issue'),
-    require('panel'),
+    require('../../modules/issues-data-list'),
+    require('../../modules/issue'),
+    require('../../modules/panel'),
     'ngSanitize',
     'btford.markdown'
 ])

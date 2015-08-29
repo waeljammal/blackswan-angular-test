@@ -5,7 +5,7 @@
  * @param values Optional Inj
  * @returns {function(Function): function(...[any]): ng.IDirective}
  */
-export var service =   function service(...values:string[]):any {
+export var service = function service(...values:string[]):any {
     return (target:Function) => {
         // Factory creates instance of directive once for
         // the life time of the app. I do not recommend

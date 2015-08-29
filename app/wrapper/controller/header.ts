@@ -1,6 +1,4 @@
-/// <reference path="../../../typings/_custom.d.ts" />
-
-import {inject, directive, controller, autobind} from '../../common/globals/decorators/decorators'
+import {inject, directive, controller, autobind} from 'op/metadata'
 
 /**
  * Global header controller for the site.

@@ -1,8 +1,7 @@
-///<reference path="../../../../typings/angularjs/angular.d.ts"/>
-import {log, inject, directive} from '../../../common/globals/decorators/decorators'
+import {directive} from 'op/metadata'
 
-/* @ngInject */
-export default class IssueDirective implements ng.IDirective {
+@directive()
+class IssueDirective implements ng.IDirective {
     /** @private **/
     public template = require('./../tpl/issue.html');
 
@@ -30,4 +29,4 @@ export default class IssueDirective implements ng.IDirective {
     }
 }
 
-module.exports = IssueDirective;
+export = IssueDirective;

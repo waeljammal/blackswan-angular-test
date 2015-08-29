@@ -3,8 +3,8 @@ import RouteConfig from './config/route-config';
 let moduleName = 'dashboardModule';
 
 angular.module(moduleName, [
-    require('statistics'),
-    require('panel')
+    require('../../modules/statistics'),
+    require('../../modules/panel')
 ])
 
 .filter('bytes', function() {

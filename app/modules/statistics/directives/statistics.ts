@@ -1,7 +1,7 @@
 ///<reference path="../../../../typings/angularjs/angular.d.ts"/>
-import {log, inject, directive} from '../../../common/globals/decorators/decorators'
+import {directive, inject} from 'op/metadata';
 
-/* @ngInject */
+@directive()
 class StatisticsDirective implements ng.IDirective {
     /** @private **/
     public template:string = require('./../tpl/statistics.html');

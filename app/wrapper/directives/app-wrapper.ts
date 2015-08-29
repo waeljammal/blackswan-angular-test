@@ -1,6 +1,4 @@
-/// <reference path="../../../typings/_custom.d.ts" />
-
-import {log, inject, directive} from '../../common/globals/decorators/decorators'
+import {log, inject, directive} from 'op/metadata'
 
 /**
  * Application wrapper directive, renders the main viewport.

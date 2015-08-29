@@ -12,7 +12,7 @@ module.exports = function(config) {
     }
 
     var preProcess = {};
-    var scan = './app/**/*test/*index.js';
+    var scan = './app/**/*test/*index.ts';
 
     preProcess[scan] = preProcessors;
 

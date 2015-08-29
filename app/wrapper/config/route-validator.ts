@@ -17,7 +17,6 @@ export default class RouteValidator {
             NavManager.updateParams(toState.name, toParams);
             NavManager.currentRoute = toState.name;
 
-
             // Uncomment to debug router
             //console.log('---------------------------------------------------');
             //console.log('Going from state: ' + fromState.name + ' to state: '  + toState.name);

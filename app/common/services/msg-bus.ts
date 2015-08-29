@@ -1,6 +1,4 @@
-/// <reference path="msg-bus.d.ts" />
-
-import {log, inject, service} from '../globals/decorators/decorators'
+import {log, inject, service} from 'op/metadata'
 
 /**
  * This bus allows you to register event listeners and emit

@@ -1,7 +1,5 @@
 // Type definitions for bootstrap
 
-/// <reference path="../../../typings/_custom.d.ts" />
-
 interface IBootstrap {
     /**
      * Adds a new dependency to the bootstrap list.

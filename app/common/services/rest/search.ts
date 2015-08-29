@@ -1,9 +1,11 @@
+/// <reference path="./search.d.ts" />
+
 /**
  * This service exposes the github search API and lets you find a
  * repository by it's full name from the cached list.
  */
 
-import {log, inject, service} from '../globals/decorators/decorators'
+import {log, inject, service} from 'op/metadata'
 
 @service()
 class SearchService {
@@ -21,7 +23,7 @@ class SearchService {
      */
     public repositories:Array<any> = [];
 
-    private resource():IIssuesResource {
+    private resource():ISearchResource {
         var baseApi:string = "https://api.github.com/search/repositories?q=:term";
         var params: any = {term: '@term'};
 
@@ -44,7 +46,7 @@ class SearchService {
             }
         };
 
-        return <IIssuesResource> this.$resource(baseApi, params, {
+        return <ISearchResource> this.$resource(baseApi, params, {
             query: queryAction,
             getIssue: getIssueAction
         });

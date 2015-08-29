@@ -1,0 +1,1 @@
+export * from '../common/globals/decorators/decorators';

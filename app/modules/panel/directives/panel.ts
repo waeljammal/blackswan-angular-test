@@ -1,6 +1,7 @@
 ///<reference path="../../../../typings/angularjs/angular.d.ts"/>
-import {log, inject, directive} from '../../../common/globals/decorators/decorators'
+import {directive, inject} from 'op/metadata';
 
+@directive()
 class PanelDirective implements ng.IDirective {
     /** @private **/
     @inject()

@@ -11,7 +11,7 @@ module.exports = {
     },
 
     entry: {
-        app: ['./index.js'],
+        app: ['./index.ts'],
         vendor: [
             'script!chart',
             'angular',
@@ -51,8 +51,8 @@ module.exports = {
                 loader: 'webpack-traceur?runtime=true&sourceMaps&experimental=true!jshint'
             },
             {
-                test: /\.ts$/,
-                loader: 'awesome-typescript-loader',
+                test: /\.ts(x?)$/,
+                loader: 'ts-loader',
                 exclude: /node_modules|bower_components|vendor/
             },
             {test: /[\/\\]angular.min\.js$/, loader: "exports?angular"},
@@ -89,6 +89,8 @@ module.exports = {
             bowerComponentsPath + "/Chart.js"
         ],
         alias: {
+            'op/metadata': __dirname + "/app/common/globals/decorators/metadata.ts",
+
             'style': __dirname + "/public/ui-assets/style/main.scss",
             'directive': __dirname + "/app/common/globals/directive.js",
             'jquery': 'jquery/dist/jquery.js',
@@ -107,11 +109,11 @@ module.exports = {
             'chart': 'Chart.js/Chart.min.js',
             'showdown': 'showdown/compressed/Showdown.js'
         },
-        extensions: ['', '.js', '.ts']
+        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
     },
     bail: false,
     plugins: [
-        new ModuleReplacementPlugin(),
+        //new ModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.optimize.DedupePlugin(),
         new ComponentResolverPlugin(

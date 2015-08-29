@@ -1,5 +1,3 @@
-/// <reference path='../../../../typings/_custom.d.ts' />
-
 let pending:Array<InjectionPoint> = [];
 
 class InjectionPoint {

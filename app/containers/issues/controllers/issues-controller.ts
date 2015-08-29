@@ -1,6 +1,4 @@
-/// <reference path="../../../../typings/_custom.d.ts" />
-
-import {log, inject, controller} from '../../../common/globals/decorators/decorators'
+import {log, inject, controller} from 'op/metadata'
 
 /**
  * Issues Controller glues all the different modules together.

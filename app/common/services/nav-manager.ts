@@ -2,10 +2,9 @@
  * Represents a navigation state
  */
 
-import {inject, service} from '../globals/decorators/decorators'
+import {inject, service} from 'op/metadata'
 
-@service()
-export class NavItem {
+class NavItem {
 
     public label:string;
     public path:string;
@@ -49,7 +48,8 @@ export class NavItem {
 /**
  * Provides utilities for managing navigation state and remembering parameters.
  */
-export default class NavManagerService {
+@service()
+class NavManagerService {
 
     /** @private **/
     @inject('Storage')
@@ -216,4 +216,4 @@ export default class NavManagerService {
     }
 }
 
-module.exports = NavManagerService;
+export = NavManagerService;

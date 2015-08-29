@@ -1,7 +1,6 @@
-///<reference path="../../../../typings/angularjs/angular.d.ts"/>
-import {log, inject, directive} from '../../../common/globals/decorators/decorators'
+import {directive} from 'op/metadata';
 
-/* @ngInject */
+@directive()
 class PanelDataListDirective implements ng.IDirective {
     /** @private */
     public template:string = require('./../tpl/issues-data-list.html');
@@ -25,6 +24,10 @@ class PanelDataListDirective implements ng.IDirective {
         selectedItem: '=',
         onSelect: '='
     };
+
+    constructor() {
+
+    }
 
     link(scope, element, attrs, ctrl, transclude) {
 
