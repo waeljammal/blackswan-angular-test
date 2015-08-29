@@ -2,13 +2,13 @@
  * Represents a navigation state
  */
 
-import {inject, service} from 'op/metadata'
+import {service} from 'op/metadata';
 
 class NavItem {
 
-    public label:string;
-    public path:string;
-    public root:string;
+    public label: string;
+    public path: string;
+    public root: string;
 
     private _children = [];
     private currentRoute = undefined;
@@ -50,15 +50,6 @@ class NavItem {
  */
 @service()
 class NavManagerService {
-
-    /** @private **/
-    @inject('Storage')
-    private storage;
-
-    /** @private **/
-    @inject()
-    private $rootScope;
-
     /** @private **/
     private _mainNav = [];
     /** @private **/
@@ -69,25 +60,6 @@ class NavManagerService {
     private _subNavVisible = false;
     /** @private **/
     private _enabled = true;
-
-    /**
-     * Sets up default paramater values
-     *
-     * @param {Object} $rootScope
-     * @param {Storage} Storage
-     */
-    constructor() {
-        /** @private **/
-        this._mainNav = [];
-        /** @private **/
-        this.params = {};
-        /** @private **/
-        this._mainNavVisible = false;
-        /** @private **/
-        this._subNavVisible = false;
-        /** @private **/
-        this._enabled = true;
-    }
 
     /**
      * Shows or hides the main navigation.
@@ -212,7 +184,7 @@ class NavManagerService {
      * @param {Object} toParams The parameters of the requested state
      */
     captureDefaultParameters(toState, toParams) {
-
+        // Do Nothing
     }
 }
 

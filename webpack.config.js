@@ -52,13 +52,12 @@ module.exports = {
             },
             {
                 test: /\.ts(x?)$/,
-                loader: 'ts-loader',
+                loader: 'ts-loader!tslint',
                 exclude: /node_modules|bower_components|vendor/
             },
             {test: /[\/\\]angular.min\.js$/, loader: "exports?angular"},
             {test: /\.png$/, loader: 'url?mimetype=image/png'},
             {test: /\.html$/, loader: 'raw', exclude: /node_modules|bower_components|vendor/},
-            {test: /\.less$/, loader: "style!css!less"},
             {test: /\.css$/, loader: "style!css"},
             {test: /\.scss$/, loader: "style!css!sass"},
             {
@@ -113,7 +112,6 @@ module.exports = {
     },
     bail: false,
     plugins: [
-        //new ModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.optimize.DedupePlugin(),
         new ComponentResolverPlugin(
@@ -129,57 +127,4 @@ module.exports = {
             "window.Chart": "chart"
         })
     ]
-};
-
-/**
- * Looks up all available modules and creates a mapping for each one.
- */
-function ModuleReplacementPlugin () {
-    this.resourceRegExp = [];
-
-    var filesystem = require("fs");
-    var modules = filesystem.readdirSync(__dirname + "/app/modules");
-
-    for(var module in modules) {
-        var name = modules[module];
-        this.resourceRegExp.push(name);
-        console.log(name)
-    }
-}
-
-/**
- * <p>Allows custom path resolving.</p>
- *
- * eg.<br/>
- * myModule will resolve to the /app/modules folder
- */
-ModuleReplacementPlugin.prototype.apply = function (compiler) {
-    var resourceRegExp = this.resourceRegExp;
-    compiler.plugin("normal-module-factory", function (nmf) {
-        nmf.plugin("before-resolve", function (result, callback) {
-            if (!result) {
-                return callback();
-            }
-
-            var split = result.request.split(".");
-
-            if(split.length > 0) {
-                var name = split[0];
-
-                if(resourceRegExp.indexOf(name) > -1 && name != 'bower' && name != 'containers' && name != 'service') {
-                    result.request = __dirname + "/app/modules/" + split.join("/");
-                } else if(name != 'bower' && name == 'containers') {
-                    var map = split.slice(1);
-                    result.request = __dirname + "/app/containers/" + map.join("/");
-                } else if(name == 'bower') {
-                    var map = split.slice(1);
-                    result.request = bower_dir + "/" + map.join("/");
-                }
-
-                return callback(null, result);
-            }
-
-            return callback(result, result);
-        });
-    });
 };

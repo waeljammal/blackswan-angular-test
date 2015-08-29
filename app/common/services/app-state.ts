@@ -1,6 +1,4 @@
-/// <reference path="./app-state.d.ts" />
-
-import {inject, service} from 'op/metadata'
+import {inject, service} from 'op/metadata';
 
 /**
  * Stores the current app state.
@@ -9,6 +7,12 @@ import {inject, service} from 'op/metadata'
  */
 @service()
 class AppStateService implements IAppStateService {
+    /**
+     * True if app is in a loading state.
+     *
+     * @type {boolean} If app is loading something.
+     */
+    public isLoading: boolean = false;
 
     /**
      * Currently selected repository.
@@ -25,23 +29,12 @@ class AppStateService implements IAppStateService {
     private _msgBus;
 
     /**
-     * True if app is in a loading state.
-     *
-     * @type {boolean} If app is loading something.
-     */
-    public isLoading:boolean = false;
-
-    constructor() {
-
-    }
-
-    /**
      * Name of the event fired when the repository changes.
      *
      * @returns {string}
      * @constructor
      */
-    get REPO_CHANGE_EVENT():string {
+    get REPO_CHANGE_EVENT(): string {
         return 'repoChangedEvent';
     }
 

@@ -5,7 +5,8 @@
  * @param values Optional Inj
  * @returns {function(Function): function(...[any]): ng.IDirective}
  */
-export var service = function service(...values:string[]):any {
+export var service = function service(...values: string[]): any {
+    /* tslint:disable no-string-literal */
     return (target:Function) => {
         // Factory creates instance of directive once for
         // the life time of the app. I do not recommend
@@ -22,9 +23,11 @@ export var service = function service(...values:string[]):any {
             // it before calling the constructor so all
             // properties are injected in advance.
             // Todo: move to a util
-            if(newInstance['__inject__']) {
-                for(let injectionPoint in newInstance['__inject__']) {
-                    newInstance['__inject__'][injectionPoint](newInstance, args);
+            if (newInstance['__inject__']) {
+                for (let injectionPoint in newInstance['__inject__']) {
+                    if (injectionPoint) {
+                        newInstance['__inject__'][injectionPoint](newInstance, args);
+                    }
                 }
             }
 
@@ -38,4 +41,5 @@ export var service = function service(...values:string[]):any {
 
         return factory;
     };
+    /* tslint:enable no-string-literal */
 };

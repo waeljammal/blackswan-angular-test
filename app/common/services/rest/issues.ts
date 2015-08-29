@@ -1,23 +1,14 @@
-/// <reference path="issues.d.ts" />
+/// <reference path='issues.d.ts' />
 
 /**
  * This services provides functions to load all issues for the active
  * repository or to find a single issue from an existing list.
  */
 
-import {log, inject, service} from 'op/metadata'
+import {inject, service} from 'op/metadata';
 
 @service()
 class IssuesService implements IIssuesService {
-    @inject()
-    private $q:ng.IQService;
-
-    @inject('AppState')
-    private _state;
-
-    @inject()
-    private $resource:ng.resource.IResourceService;
-
     /**
      * Current Issue
      * @type {Object}
@@ -30,66 +21,37 @@ class IssuesService implements IIssuesService {
      */
     public issueList = [];
 
+    /** @private **/
+    @inject()
+    private $q: ng.IQService;
+
+    /** @private **/
+    @inject('AppState')
+    private _state;
+
+    @inject()
+    private $resource: ng.resource.IResourceService;
+
     /**
      * What state to use for the issues.
      *
      * @type {string}
      */
-    private issueListState = 'open';
+    private issueListState: string = 'open';
 
     /**
      * Sorts by created date.
      *
      * @type {string}
      */
-    private issueListSort = 'created';
+    private issueListSort: string = 'created';
 
     /**
      * Sorts in descending order.
      *
      * @type {string}
      */
-    private issueListDirection = 'desc';
-
-    /**
-     * The current page number.
-     *
-     * @type {number}
-     */
-    private issueListPage = 1;
-
-    constructor() {
-
-    }
-
-    private resource():IIssuesResource {
-        var baseApi:string = "https://api.github.com/repos/:login/:name/issues/:number";
-        var params: any = {login: "@login", name: "@name", number:"@number"};
-
-        var queryAction: ng.resource.IActionDescriptor = {
-            method: "GET",
-            isArray: true,
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
-        };
-
-        var getIssueAction: ng.resource.IActionDescriptor = {
-            method: "GET",
-            isArray: true,
-            params: {
-                number: 0
-            },
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
-        };
-
-        return <IIssuesResource> this.$resource(baseApi, params, {
-            query: queryAction,
-            getIssue: getIssueAction
-        });
-    }
+    private issueListDirection: string = 'desc';
 
     /**
      * Returns a single issue or undefined if no issue was found.
@@ -98,8 +60,8 @@ class IssuesService implements IIssuesService {
      * @returns {Object}
      */
     find(id) {
-        for(let i = 0; i < this.issueList.length; i++) {
-            if(this.issueList[i].id.toString() === id) {
+        for (let i = 0; i < this.issueList.length; i++) {
+            if (this.issueList[i].id.toString() === id) {
                 return this.issueList[i];
             }
         }
@@ -129,6 +91,35 @@ class IssuesService implements IIssuesService {
         });
 
         return def.promise;
+    }
+
+    private resource(): IIssuesResource {
+        let baseApi: string = 'https://api.github.com/repos/:login/:name/issues/:number';
+        let params: any = { login: '@login', name: '@name', number: '@number' };
+
+        let queryAction: ng.resource.IActionDescriptor = {
+            method: 'GET',
+            isArray: true,
+            transformResponse: (data: string) => {
+                return angular.fromJson(data);
+            }
+        };
+
+        let getIssueAction: ng.resource.IActionDescriptor = {
+            method: 'GET',
+            isArray: true,
+            params: {
+                number: 0
+            },
+            transformResponse: (data: string) => {
+                return angular.fromJson(data);
+            }
+        };
+
+        return <IIssuesResource> this.$resource(baseApi, params, {
+            query: queryAction,
+            getIssue: getIssueAction
+        });
     }
 }
 

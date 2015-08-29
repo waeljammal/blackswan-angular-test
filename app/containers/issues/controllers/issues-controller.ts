@@ -1,10 +1,16 @@
-import {log, inject, controller} from 'op/metadata'
+import {inject, controller} from 'op/metadata';
 
 /**
  * Issues Controller glues all the different modules together.
  */
 @controller()
 class IssuesController {
+    /**
+     * Expose issue selection method and maintain current function scope.
+     *
+     * @param d {Object} Issue.
+     */
+    public selectIssue: Function;
 
     /** @private **/
     @inject('Issues')
@@ -18,15 +24,8 @@ class IssuesController {
     @inject()
     private $state;
 
-    /**
-     * Expose issue selection method and maintain current function scope.
-     *
-     * @param d {Object} Issue.
-     */
-    public selectIssue:Function;
-
     constructor() {
-        this.selectIssue = (d) => {this.doSelectIssue(d);};
+        this.selectIssue = (d) => { this.doSelectIssue(d); };
     }
 
     /**

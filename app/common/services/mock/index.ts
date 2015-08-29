@@ -1,9 +1,11 @@
-let moduleName = 'mocks';
+(() => {
+    let moduleName = 'mocks';
 
-angular.module(moduleName, []);
-require('angular-mocks');
+    angular.module(moduleName, []);
+    require('angular-mocks');
 
-var testsContext = require.context('.', true, /mock.js$/);
-testsContext.keys().forEach(testsContext);
+    var testsContext = require.context('.', true, /mock.ts$/);
+    testsContext.keys().forEach(testsContext);
 
-module.exports = moduleName;
+    module.exports = moduleName;
+})();

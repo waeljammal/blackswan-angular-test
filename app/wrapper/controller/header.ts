@@ -1,4 +1,4 @@
-import {inject, directive, controller, autobind} from 'op/metadata'
+import {inject, controller} from 'op/metadata';
 
 /**
  * Global header controller for the site.
@@ -10,43 +10,47 @@ class HeaderController {
     @inject()
     public $state;
 
-    @inject('NavManager')
-    private _nav;
-
-    @inject('AppState')
-    private _appState;
-
-    @inject('Search')
-    private _searchService;
-
-    @inject("MsgBus")
-    private _msgBus;
-
     /**
      * Handles repository searching.
      */
-    public getRepositories:Function;
+    public getRepositories: Function;
 
     /**
      * Handles repository selection.
      */
-    public selectRepo:Function;
+    public selectRepo: Function;
 
     /**
      * Selected Repository
      */
     public selectedRepo;
 
+    /** @private **/
+    @inject('NavManager')
+    private _nav;
+
+    /** @private **/
+    @inject('AppState')
+    private _appState;
+
+    /** @private **/
+    @inject('Search')
+    private _searchService;
+
+    /** @private **/
+    @inject('MsgBus')
+    private _msgBus;
+
     constructor() {
         // Listen for repo changes
-        this._msgBus.onMsg(this._appState.REPO_CHANGE_EVENT, (e, d) => {this.update(d);});
+        this._msgBus.onMsg(this._appState.REPO_CHANGE_EVENT, (e, d) => { this.update(d); });
 
         // Update on initialization, the router will have already
         // taken care of loading the repo if provided through the url.
         this.update(this._appState.currentRepo);
 
-        this.getRepositories = (value) => {return this.handleGetRepositories(value);}
-        this.selectRepo = ($item, $model, $label) => {this.handleSelectRepo($item, $model, $label);};
+        this.getRepositories = (value) => { return this.handleGetRepositories(value); };
+        this.selectRepo = ($item, $model, $label) => { this.handleSelectRepo($item, $model, $label); };
     }
 
     /**
@@ -129,7 +133,7 @@ class HeaderController {
      * @param {Object} data Object containing the 'path'
      */
     navigateTo(data) {
-        if(!this.enabled) {
+        if (!this.enabled) {
             return;
         }
 
@@ -168,7 +172,7 @@ class HeaderController {
 
         let path = this.$state.current.name;
 
-        if(path === 'top') {
+        if (path === 'top') {
             path = 'top.repo.dashboard';
         }
 

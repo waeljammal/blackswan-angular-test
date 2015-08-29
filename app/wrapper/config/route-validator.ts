@@ -1,9 +1,8 @@
 /**
  * Validates routes
  */
-/* @ngInject */
 export default class RouteValidator {
-    constructor($state, $timeout, $rootScope, NavManager, Storage) {
+    constructor($state, $timeout: ng.ITimeoutService, $rootScope, NavManager) {
         $rootScope.$state = $state;
 
         // TODO Handle state change errors cleanly.
@@ -18,11 +17,11 @@ export default class RouteValidator {
             NavManager.currentRoute = toState.name;
 
             // Uncomment to debug router
-            //console.log('---------------------------------------------------');
-            //console.log('Going from state: ' + fromState.name + ' to state: '  + toState.name);
-            //console.log('From Params: ' + fromParams);
-            //console.log('To Params: ' + toParams);
-            //console.log('---------------------------------------------------');
+            // console.log('---------------------------------------------------');
+            // console.log('Going from state: ' + fromState.name + ' to state: '  + toState.name);
+            // console.log('From Params: ' + fromParams);
+            // console.log('To Params: ' + toParams);
+            // console.log('---------------------------------------------------');
 
             NavManager.captureDefaultParameters(toState, toParams);
         });

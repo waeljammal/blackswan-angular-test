@@ -1,56 +1,25 @@
-/// <reference path="./search.d.ts" />
-
 /**
  * This service exposes the github search API and lets you find a
  * repository by it's full name from the cached list.
  */
 
-import {log, inject, service} from 'op/metadata'
+import {inject, service} from 'op/metadata';
 
 @service()
 class SearchService {
-    @inject()
-    private $q:ng.IQService;
-
-    @inject()
-    private $resource:ng.resource.IResourceService;
-
     /**
      * List of all the repositories found using
      * the search(term) function.
      *
      * @type {Array} Array of repositories.
      */
-    public repositories:Array<any> = [];
+    public repositories: Array<any> = [];
 
-    private resource():ISearchResource {
-        var baseApi:string = "https://api.github.com/search/repositories?q=:term";
-        var params: any = {term: '@term'};
+    @inject()
+    private $q: ng.IQService;
 
-        var queryAction: ng.resource.IActionDescriptor = {
-            method: "GET",
-            isArray: false,
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
-        };
-
-        var getIssueAction: ng.resource.IActionDescriptor = {
-            method: "GET",
-            isArray: true,
-            params: {
-                number: 0
-            },
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
-        };
-
-        return <ISearchResource> this.$resource(baseApi, params, {
-            query: queryAction,
-            getIssue: getIssueAction
-        });
-    }
+    @inject()
+    private $resource: ng.resource.IResourceService;
 
     /**
      * Returns a single repository.
@@ -59,12 +28,10 @@ class SearchService {
      * @returns {Object|undefined} Repository or undefined.
      */
     find(fullName) {
-        for(let i = 0; i < this.repositories.length; i++) {
-            /*jshint camelcase: false */
-            if(this.repositories[i].full_name === fullName) {
+        for (let i = 0; i < this.repositories.length; i++) {
+            if (this.repositories[i].full_name === fullName) {
                 return this.repositories[i];
             }
-            /*jshint camelcase: true */
         }
 
         return undefined;
@@ -88,6 +55,35 @@ class SearchService {
         });
 
         return def.promise;
+    }
+
+    private resource(): ISearchResource {
+        let baseApi: string = 'https://api.github.com/search/repositories?q=:term';
+        let params: any = {term: '@term'};
+
+        let queryAction: ng.resource.IActionDescriptor = {
+            method: 'GET',
+            isArray: false,
+            transformResponse: (data: string) => {
+                return angular.fromJson(data);
+            }
+        };
+
+        let getIssueAction: ng.resource.IActionDescriptor = {
+            method: 'GET',
+            isArray: true,
+            params: {
+                number: 0
+            },
+            transformResponse: (data: string) => {
+                return angular.fromJson(data);
+            }
+        };
+
+        return <ISearchResource> this.$resource(baseApi, params, {
+            query: queryAction,
+            getIssue: getIssueAction
+        });
     }
 }
 

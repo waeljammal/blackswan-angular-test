@@ -5,7 +5,7 @@ interface IBootstrap {
      * Adds a new dependency to the bootstrap list.
      * @param dependency
      */
-    add(dependency:string);
+    add(dependency:any);
 
     /**
      * Starts the bootstrap process.

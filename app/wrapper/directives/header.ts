@@ -1,17 +1,28 @@
-import {log, inject, directive} from 'op/metadata'
+import {directive} from 'op/metadata';
 
 /**
  * Header directive renders the global header.
  */
+@directive()
 class HeaderDirective implements ng.IDirective {
     public template = require('./../tpl/header.html');
-    public restrict = 'AE';
+
+    /**
+     * Restricted to Attributes or Elements.
+     *
+     * @type {string}
+     */
+    public restrict: string = 'AE';
+
+    /** @private **/
     public controller = require('../controller/header');
-    public controllerAs = 'hc';
 
-    link(scope, element, attrs, ctrl, transclude) {
-
-    }
+    /**
+     * Controller Name
+     *
+     * @type {string} hc
+     */
+    public controllerAs: string = 'hc';
 }
 
 export = HeaderDirective;

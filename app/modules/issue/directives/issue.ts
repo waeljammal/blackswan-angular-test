@@ -1,4 +1,4 @@
-import {directive} from 'op/metadata'
+import {directive} from 'op/metadata';
 
 @directive()
 class IssueDirective implements ng.IDirective {
@@ -20,13 +20,6 @@ class IssueDirective implements ng.IDirective {
     public scope = {
         data: '='
     };
-
-    /**
-     * @private
-     */
-    link(scope, element, attrs) {
-
-    }
 }
 
 export = IssueDirective;

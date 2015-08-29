@@ -7,12 +7,8 @@ export default class RouteConfig {
      *
      * @param $stateProvider Current state provider
      * @param $urlRouterProvider Url route provider
-     * @param $stickyStateProvider Stick state provider
      */
-    constructor($stateProvider, $urlRouterProvider, $stickyStateProvider) {
-        // Enable to turn on state debugging
-        //$stickyStateProvider.enableDebug(true);
-
+    constructor($stateProvider, $urlRouterProvider) {
         // The default path if an incorrect path is supplied by the user
         $urlRouterProvider.otherwise('/');
 
@@ -54,7 +50,7 @@ export default class RouteConfig {
                     AppState.currentRepo = Search.find($stateParams.owner + '/' + $stateParams.repo);
 
                     // If not make a request to load it
-                    if(AppState.currentRepo === undefined) {
+                    if (AppState.currentRepo === undefined) {
                         AppState.isLoading = true;
                         // Load the Repo
                         Repository.load($stateParams.owner, $stateParams.repo).then((data) => {

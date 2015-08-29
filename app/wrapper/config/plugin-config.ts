@@ -1,11 +1,9 @@
 /**
  * Configures global plugins for this wrapper in the Configure phase.
  */
-/* @ngInject */
-export default class PluginConfig {
-    constructor() {
 
-    }
+export default class PluginConfig {
+
 }
 
 module.exports = PluginConfig;

@@ -1,4 +1,4 @@
-import {log, inject, service} from 'op/metadata'
+import {inject, service} from 'op/metadata';
 
 /**
  * This bus allows you to register event listeners and emit
@@ -6,21 +6,11 @@ import {log, inject, service} from 'op/metadata'
  */
 @service()
 class MsgBus implements IMsgBus {
-
     /**
      * @private
      */
     @inject()
     private $rootScope;
-
-    /**
-     * Constructor.
-     *
-     * @param $rootScope
-     */
-    constructor() {
-
-    }
 
     /**
      * Emits a message on the $rootScope.
@@ -41,7 +31,7 @@ class MsgBus implements IMsgBus {
      * @param scope {$scope} Optional scope is used to unbind the listener on $destroy.
      */
     onMsg(msg, func, scope) {
-        var unbind = this.$rootScope.$on(msg, func);
+        let unbind = this.$rootScope.$on(msg, func);
 
         if (scope) {
             scope.$on('$destroy', unbind);

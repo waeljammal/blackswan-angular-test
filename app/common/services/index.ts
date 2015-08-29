@@ -11,4 +11,4 @@ angular.module(moduleName, [])
 .service('Issues', require('./rest/issues'))
 .service('Repository', require('./rest/repository'));
 
-module.exports = moduleName;
+export = moduleName;

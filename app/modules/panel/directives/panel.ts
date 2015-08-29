@@ -4,10 +4,6 @@ import {directive, inject} from 'op/metadata';
 @directive()
 class PanelDirective implements ng.IDirective {
     /** @private **/
-    @inject()
-    private $compile;
-
-    /** @private **/
     public template = require('./../tpl/panel.html');
 
     /**
@@ -31,13 +27,17 @@ class PanelDirective implements ng.IDirective {
         actions: '='
     };
 
+    /** @private **/
+    @inject()
+    private $compile;
+
     /**
      * @private
      */
     link(scope, element, attrs, ctrl, transclude) {
         let actions = element.find('actions');
 
-        if(actions.length > 0) {
+        if (actions.length > 0) {
             let children = actions[0].innerHTML;
             let footer = element.find('.panel-footer-btn-group');
 

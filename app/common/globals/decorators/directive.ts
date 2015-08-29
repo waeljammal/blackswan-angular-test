@@ -5,12 +5,13 @@
  * @param values Optional Inj
  * @returns {function(Function): function(...[any]): ng.IDirective}
  */
-export var directive = function directive(...values:string[]):any {
-    return (target:Function) => {
+export var directive = function directive(...values: string[]): any {
+    return (target: Function) => {
         // Factory creates instance of directive once for
         // the life time of the app. I do not recommend
         // change this as it would be inefficient, link
         // is called per usage of the directive.
+        /* tslint:disable no-string-literal */
         var factory = (...args: any[]): ng.IDirective => {
             // Creates the instance
             var newInstance = Object.create(target.prototype);
@@ -39,6 +40,7 @@ export var directive = function directive(...values:string[]):any {
 
             return newInstance;
         };
+        /* tslint:enable no-string-literal */
 
         factory.$inject = target.$inject;
 

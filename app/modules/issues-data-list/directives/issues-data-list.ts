@@ -3,14 +3,14 @@ import {directive} from 'op/metadata';
 @directive()
 class PanelDataListDirective implements ng.IDirective {
     /** @private */
-    public template:string = require('./../tpl/issues-data-list.html');
+    public template: string = require('./../tpl/issues-data-list.html');
 
     /**
      * Restricted to Attributes or Elements.
      *
      * @type {string}
      */
-    public restrict:string = 'AE';
+    public restrict: string = 'AE';
 
     /**
      * data: Array of Issues. <br/>
@@ -24,14 +24,6 @@ class PanelDataListDirective implements ng.IDirective {
         selectedItem: '=',
         onSelect: '='
     };
-
-    constructor() {
-
-    }
-
-    link(scope, element, attrs, ctrl, transclude) {
-
-    }
 }
 
 export = PanelDataListDirective;

@@ -22,9 +22,9 @@ class RouteConfig {
             resolve: {
                 setupIssues: function($state, $timeout, resolveRepo, AppState, Issues, NavManager) {
                     // We wont load issues or redirect if NavManager already contains params for issues.issue.
-                    if(AppState.currentRepo && !NavManager.getParams('top.repo.issues.issue')) {
+                    if (AppState.currentRepo && !NavManager.getParams('top.repo.issues.issue')) {
                         return Issues.loadAll().then((issues) => {
-                            if(issues.length > 0) {
+                            if (issues.length > 0) {
                                 // Wait a frame, let the previous request complete first.
                                 $timeout(() => {
                                     // Get the current params and replace the issue id

@@ -4,6 +4,7 @@
 /* @ngInject */
 export default class PluginRun {
     constructor() {
+        /* tslint:disable no-string-literal */
         $(function() {
             return $('[data-toggle="tooltip"]')['tooltip']();
         });
@@ -11,6 +12,7 @@ export default class PluginRun {
         $(function() {
             return $('[data-toggle="popover"]')['popover']();
         });
+        /* tslint:enable no-string-literal */
     }
 }
 

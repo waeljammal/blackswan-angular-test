@@ -9,9 +9,9 @@ class StorageService {
      * @returns {Object|string}
      */
     get(key) {
-        var item = localStorage.getItem(key);
+        let item = localStorage.getItem(key);
 
-        if(item) {
+        if (item) {
             item = item.replace(/"/g, '');
             return item;
         }

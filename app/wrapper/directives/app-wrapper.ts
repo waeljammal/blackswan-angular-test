@@ -1,4 +1,4 @@
-import {log, inject, directive} from 'op/metadata'
+import {inject, directive} from 'op/metadata';
 
 /**
  * Application wrapper directive, renders the main viewport.
@@ -8,22 +8,22 @@ import {log, inject, directive} from 'op/metadata'
  */
 @directive()
 class ViewportDirective implements ng.IDirective {
-    /**
-     * Application State Service
-     * @private
-     */
-    @inject('AppState')
-    private _appState;
-
     /** @private **/
-    public template:string = require('./../tpl/app-wrapper.html');
+    public template: string = require('./../tpl/app-wrapper.html');
 
     /**
      * Restricted to Attributes or Elements.
      *
      * @type {string}
      */
-    public restrict:string = 'AE';
+    public restrict: string = 'AE';
+
+    /**
+     * Application State Service
+     * @private
+     */
+    @inject('AppState')
+    private _appState;
 
     link(scope, element, attrs, ctrl, transclude) {
         scope.state = this._appState;

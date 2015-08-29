@@ -1,5 +1,3 @@
-/// <reference path="./bootstrap.d.ts" />
-
 /**
  * Compiles the SCSS style sheets into the bundle.
  * This alias is defined in the webpack configuration.
@@ -16,7 +14,7 @@ require('style');
  */
 class Bootstrap implements IBootstrap {
 
-    private dependencies:Array<string> = [];
+    private dependencies: Array<string> = [];
 
     /**
      * Initializes the dependencies array
@@ -35,7 +33,7 @@ class Bootstrap implements IBootstrap {
      * @param {Object} dependency
      * @returns {Bootstrap} Returns Self
      */
-    add(dependency:string) {
+    add(dependency: any) {
         this.dependencies.push(dependency);
         return this;
     }
