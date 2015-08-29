@@ -15,9 +15,6 @@ export var service =   function service(...values:string[]):any {
             // Creates the instance
             var newInstance = Object.create(target.prototype);
 
-            // Invoke the constructor, includes dependencies for injection
-            newInstance.constructor.apply(newInstance, args);
-
             // Because property decorates are registered
             // before any class instances are created we
             // will check if there is an injection point
@@ -30,6 +27,9 @@ export var service =   function service(...values:string[]):any {
                     newInstance['__inject__'][injectionPoint](newInstance, args);
                 }
             }
+
+            // Invoke the constructor, includes dependencies for injection
+            newInstance.constructor.apply(newInstance, args);
 
             return newInstance;
         };

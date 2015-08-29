@@ -1,7 +1,7 @@
 /**
  * Route configuration for the issues glue container.
  */
-export default class RouteConfig {
+class RouteConfig {
     /**
      * Sets up the routes.
      *
@@ -57,4 +57,4 @@ export default class RouteConfig {
     }
 }
 
-module.exports = RouteConfig;
+export = RouteConfig;

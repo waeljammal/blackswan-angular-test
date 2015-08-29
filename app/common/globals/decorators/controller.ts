@@ -1,5 +1,3 @@
-/// <reference path="../../../../typings/_custom.d.ts" />
-
 /**
  * A decorator factory for use on classes that implement ng.IDecorator.
  *
@@ -12,13 +10,18 @@
 export var controller = function controller(...values:string[]):any {
     return (target:Function) => {
 
-        controllers.add(new ControllerInstance(target));
+        // I do this because i want angular to create the instance
+        // as the controller initialization process is complex and
+        // takes into account things like controllerAs, Directives,
+        // Scope and much more. I just want to know when the constructor
+        // gets called so I can do my thing.
+        controllers.push(new ControllerInstance(target));
 
         return target;
     };
 };
 
-var controllers:WeakSet<ControllerInstance> = new WeakSet<ControllerInstance>();
+var controllers = [];
 
 class ControllerInstance {
     private _apply;

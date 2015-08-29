@@ -109,6 +109,7 @@ angular.module('issues-mocks', ['ngMockE2E'])
         ];
 
         let url = 'https://api.github.com/repos/angular/angular/issues?direction=desc&sort=created&state=open';
+
         $httpBackend.whenGET(url).respond(200, data);
     });
 

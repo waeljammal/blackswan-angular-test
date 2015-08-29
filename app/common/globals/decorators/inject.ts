@@ -29,9 +29,9 @@ class InjectionPoint {
         }
 
         this._target['__inject__'].push((instance, args) => {
-            console.log('Process Injection Point [Target]: ' +
-                instance['__proto__'].constructor.name +
-                ' [Property]: ' + this._propertyName );
+            //console.log('Process Injection Point [Target]: ' +
+            //    instance['__proto__'].constructor.name +
+            //    ' [Property]: ' + this._propertyName );
 
             this.inject(args, instance);
         });
@@ -51,11 +51,11 @@ class InjectionPoint {
     }
 }
 
-export var inject =  function inject(...injectionKeys) {
+export var inject = function inject(...injectionKeys) {
     return function recordInjection(target : Object, decoratedPropertyName : string) : void {
-        console.log('Record Injection Point [Target]: ' +
-            target.constructor['name'] +
-            ' [Property]: ' + decoratedPropertyName );
+        //console.log('Record Injection Point [Target]: ' +
+        //    target.constructor['name'] +
+        //    ' [Property]: ' + decoratedPropertyName );
 
         var keys = injectionKeys;
 

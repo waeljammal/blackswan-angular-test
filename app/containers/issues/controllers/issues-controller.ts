@@ -1,20 +1,33 @@
+/// <reference path="../../../../typings/_custom.d.ts" />
+
+import {log, inject, controller} from '../../../common/globals/decorators/decorators'
+
 /**
- * Issues Controller glues together all the used modules.
+ * Issues Controller glues all the different modules together.
  */
-/* @ngInject */
-export default class IssuesController {
-    constructor($state, Issues, NavManager) {
-        this._service = Issues;
-        this._nav = NavManager;
+@controller()
+class IssuesController {
 
-        /** @private **/
-        this.$state = $state;
+    /** @private **/
+    @inject('Issues')
+    private _service;
 
-        /**
-         * Expose issue selection method and maintain current function scope.
-         *
-         * @param d {Object} Issue.
-         */
+    /** @private **/
+    @inject('NavManager')
+    private _nav;
+
+    /** @private **/
+    @inject()
+    private $state;
+
+    /**
+     * Expose issue selection method and maintain current function scope.
+     *
+     * @param d {Object} Issue.
+     */
+    public selectIssue:Function;
+
+    constructor() {
         this.selectIssue = (d) => {this.doSelectIssue(d);};
     }
 
@@ -64,4 +77,4 @@ export default class IssuesController {
     }
 }
 
-module.exports = IssuesController;
+export = IssuesController;

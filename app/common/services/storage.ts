@@ -1,7 +1,7 @@
 /**
  * A helper service for storing and retrieving data from the browser database.
  */
-export default class StorageService {
+class StorageService {
     /**
      * Get a value from the database.
      *
@@ -46,4 +46,4 @@ export default class StorageService {
     }
 }
 
-module.exports = StorageService;
+export = StorageService;

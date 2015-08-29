@@ -1,4 +1,5 @@
 /// <reference path="../../../../typings/_custom.d.ts" />
+//import {inject} from 'bsd'
 
 import {log, inject, controller} from '../../../common/globals/decorators/decorators'
 

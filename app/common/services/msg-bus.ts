@@ -1,7 +1,5 @@
 /// <reference path="msg-bus.d.ts" />
 
-import BaseClass from '../globals/base-class';
-
 import {log, inject, service} from '../globals/decorators/decorators'
 
 /**
@@ -9,7 +7,7 @@ import {log, inject, service} from '../globals/decorators/decorators'
  * events from anywhere in your application.
  */
 @service()
-class MsgBus extends BaseClass implements IMsgBus {
+class MsgBus implements IMsgBus {
 
     /**
      * @private
@@ -23,7 +21,7 @@ class MsgBus extends BaseClass implements IMsgBus {
      * @param $rootScope
      */
     constructor() {
-        super();
+
     }
 
     /**

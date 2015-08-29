@@ -12,5 +12,9 @@
     "sourceMap": true,
     "listFiles": true,
     "outDir": "dist"
-  }
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts"
+  ]
 }
