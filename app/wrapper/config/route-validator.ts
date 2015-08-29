@@ -1,7 +1,7 @@
 /**
  * Validates routes
  */
-export default class RouteValidator {
+class RouteValidator {
     constructor($state, $timeout: ng.ITimeoutService, $rootScope, NavManager) {
         $rootScope.$state = $state;
 
@@ -28,4 +28,4 @@ export default class RouteValidator {
     }
 }
 
-module.exports = RouteValidator;
+export = RouteValidator;

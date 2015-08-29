@@ -1,7 +1,7 @@
 /**
  * Configures routes for the wrapper.
  */
-export default class RouteConfig {
+class RouteConfig {
     /**
      * Sets up the routes.
      *
@@ -76,4 +76,4 @@ export default class RouteConfig {
     }
 }
 
-module.exports = RouteConfig;
+export = RouteConfig;

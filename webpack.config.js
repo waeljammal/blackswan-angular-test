@@ -51,7 +51,7 @@ module.exports = {
                 loader: 'webpack-traceur?runtime=true&sourceMaps&experimental=true!jshint'
             },
             {
-                test: /\.ts(x?)$/,
+                test: /\.ts$/,
                 loader: 'ts-loader!tslint',
                 exclude: /node_modules|bower_components|vendor/
             },

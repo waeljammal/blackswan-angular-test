@@ -2,7 +2,7 @@
  * Configures global plugins for this wrapper in the Run phase
  */
 /* @ngInject */
-export default class PluginRun {
+class PluginRun {
     constructor() {
         /* tslint:disable no-string-literal */
         $(function() {
@@ -16,4 +16,4 @@ export default class PluginRun {
     }
 }
 
-module.exports = PluginRun;
+export = PluginRun;

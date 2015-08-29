@@ -1,5 +1,5 @@
 describe('Test Issues List Directive', function() {
-    var element, scope;
+    let element, scope;
 
     // Module name we are testing
     beforeEach(angular.mock.module('issuesDataListModule'));

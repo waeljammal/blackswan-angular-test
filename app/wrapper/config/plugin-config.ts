@@ -2,8 +2,8 @@
  * Configures global plugins for this wrapper in the Configure phase.
  */
 
-export default class PluginConfig {
+class PluginConfig {
 
 }
 
-module.exports = PluginConfig;
+export = PluginConfig;
