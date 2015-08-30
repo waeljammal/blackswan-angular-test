@@ -2,6 +2,8 @@
 
 BlackSwan github API test, built with AngularJS / Karma / Jasmine / Webpack
 
+Only tested in chrome so please test in Chrome.
+
 The project uses a modular architecture where you build re-usable modules and glue them together in a container.
 
 - Install
