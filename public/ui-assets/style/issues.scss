@@ -2,13 +2,12 @@
   position: relative;
   min-width: 450px;
   max-width: 450px;
+  max-height: calc(100vh - 118px);
 
   .panel .panel-body {
-    display: flex;
     overflow: scroll;
-    height: calc(1vh);
-    position: relative;
     width: 100%;
+    max-height: calc(100vh - 118px);
   }
 
   .panel .panel-body .list-group {
