@@ -26,6 +26,7 @@ class HeaderController {
     public selectedRepo: IRepository;
 
     /** @private **/
+    // TODO Strongly type the navmanager
     @inject('NavManager')
     private _nav: any;
 

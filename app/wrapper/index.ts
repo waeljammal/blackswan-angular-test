@@ -18,7 +18,6 @@
     .directive('appWrapper', require('./directives/app-wrapper'))
 
     // Run Phase
-    .run(require('./config/plugin-run'))
     .run(require('./config/route-validator'))
 
     // Config Phase
