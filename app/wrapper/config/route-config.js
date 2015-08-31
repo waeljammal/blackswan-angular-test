@@ -20,9 +20,6 @@ export default class RouteConfig {
         // this uses named views so the templates can be switched out easily
         $stateProvider.state('top', {
             url: '/',
-            sticky: true, // Stops controllers reloading on navigation
-            deepStateRedirect: true,
-            abstract: false, // Makes the view non navigable, will default to /dashboard
             views: {
                 'layout@': {
                     template: require('./../tpl/content-layout.html')
@@ -44,8 +41,6 @@ export default class RouteConfig {
         $stateProvider.state('top.repo', {
             url: ':owner/:repo',
             abstract: true,
-            sticky: false,
-            deepStateRedirect: false,
             resolve: {
                 resolveRepo: function(preLoad, $stateParams, $q, Search, AppState, Repository, Issues) {
                     let def = $q.defer();

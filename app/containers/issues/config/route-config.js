@@ -10,7 +10,7 @@ export default class RouteConfig {
     constructor($stateProvider) {
         $stateProvider.state('top.repo.issues', {
             url: '/issues',
-            sticky: false,
+            sticky: true,
             deepStateRedirect: false,
             views: {
                 'contentView@top': {

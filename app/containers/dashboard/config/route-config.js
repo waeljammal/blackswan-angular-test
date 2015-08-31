@@ -10,7 +10,7 @@ export default class RouteConfig {
     constructor($stateProvider) {
         $stateProvider.state('top.repo.dashboard', {
             url: '/dashboard',
-            sticky: false,
+            sticky: true,
             deepStateRedirect: true,
             views: {
                 'contentView@top': {
