@@ -7,7 +7,6 @@
 
 import RouteConfig from './config/route-config';
 import PluginConfig from './config/plugin-config';
-import PluginRun from './config/plugin-run';
 import RouteValidator from './config/route-validator';
 import HeaderDirective from './directives/header';
 import ViewportDirective from './directives/app-wrapper';
@@ -30,7 +29,6 @@ angular.module(moduleName, [
 .directive('appWrapper', (AppState) => { return new ViewportDirective(AppState); })
 
 // Run Phase
-.run(PluginRun)
 .run(RouteValidator)
 
 // Config Phase
