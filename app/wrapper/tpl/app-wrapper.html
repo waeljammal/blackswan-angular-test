@@ -5,12 +5,10 @@
 <div ui-view="layout" class="layout" ng-if="state.isLoading == false && state.currentRepo != null"></div>
 
 <!-- content: messages view -->
-<section class="container-main container-hbox container-margin-10 container-margin-top" ng-show="state.currentRepo == null">
-    <div class="container-main container-hbox container-center-block" ng-show="state.currentRepo == null && state.isLoading == false">
-        <label>Begin by typing in a search term in the box located at the top right.</label>
-    </div>
+<div class="cl-ui-view container-center-block" ng-show="state.currentRepo == null && state.isLoading == false">
+    <label>Begin by typing in a search term in the box located at the top right.</label>
+</div>
 
-    <div class="container-main container-hbox container-center-block" ng-if="state.isLoading == true" style="text-align: center;">
-        <label>Please wait while data is loaded</label>
-    </div>
-</section>
+<div class="cl-ui-view container-center-block" ng-if="state.currentRepo == null && state.isLoading == true" style="text-align: center;">
+    <label>Please wait while data is loaded</label>
+</div>
