@@ -3,9 +3,9 @@
        ng-repeat="item in data"
        ng-class="{active: item.id == selectedItem.id}"
        ng-click="onSelect(item)">
-        <div class="container-hbox">
+        <div class="container-flex container-hbox">
             <img ng-src="{{item.user.avatar_url}}" class="img-rounded list-thumb">
-            <span class="container-vbox">
+            <span class="container-flex container-vbox">
                 <span><b>{{item.user.login}}</b></span>
                 <span>{{item.title}}</span>
             </span>
