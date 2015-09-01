@@ -1,5 +1,10 @@
 .dashboard-right {
+  position: relative;
+  min-width: 500px;
   max-width: 500px;
+  width: 500px;
+  padding-top: 10px;
+  padding-right: 10px;
 
   .dashboard-stats {
     max-width: 500px;
@@ -7,8 +12,26 @@
   }
 
   .dashboard-info {
-    position: relative;
+    position: absolute;
     max-width: 500px;
+    max-width: 500px;
+    left: 0px;
+    right: 10px;
+    bottom: 0px;
+    top: 442px;
+
+    .panel {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: 10px;
+      top: 0px;
+
+      .info {
+        flex-direction: column;
+        flex: 1;
+      }
+    }
 
     .description {
       position: absolute;
@@ -23,40 +46,56 @@
       max-width: 97px;
       height: 97px;
       margin-right: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 4px;
     }
 
     .badge {
       margin-bottom: 3px;
-      margin-top: 29px;
       font-size: 20px;
       padding-top: 5px;
     }
 
     .table {
-      margin-top: 20px;
+      margin-top: 7px;
       margin-bottom: 0px;
     }
   }
 }
 
 .dashboard-issues {
-  position: relative;
+  position:relative;
+  -webkit-flex: 1;
+  flex:1;
+  padding: 10px;
 
-  .panel .panel-body {
-    overflow: scroll;
-    width: 100%;
-    max-height: calc(100vh - 118px);
-  }
+  .panel {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    top: 10px;
 
-  .panel .panel-body .list-group {
-    padding-left: 0;
-    margin-bottom: 0px;
-  }
+    .panel-body {
+      position: absolute;
+      overflow: scroll;
+      top: 50px;
+      bottom: 10px;
+      left: 10px;
+      right: 0px;
+      padding: 0 10px 0 0;
 
-  .list-thumb {
-    max-width: 60px;
-    height: 60px;
-    margin-right: 10px;
+      .list-group {
+        padding-left: 0;
+        margin-bottom: 0px;
+        position:relative;
+        overflow: hidden;
+
+        .list-thumb {
+          max-width: 60px;
+          height: 60px;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }

@@ -4,39 +4,54 @@
 
 html, body {
   width: 100%;
+  height: 100%;
   min-width: 1024px;
-  min-height: 795px;
+  min-height: 782px;
   height: 100%;
   margin: 0;
   padding: 0pt;
-  overflow: scroll;
   font-family: 'PT Sans', sans-serif;
 }
 
-.container-main {
+app-wrapper {
+  height:100%;
+  display:flex;
+  display: -webkit-flex;
+  align-content: stretch;
+  -webkit-align-content: stretch;
+
+  .layout {
+    //height:100%;
+    display:flex;
+    display: -webkit-flex;
+    align-content: stretch;
+    -webkit-align-content: stretch;
+    margin-top: 51px;
+    flex: 1;
+    overflow: auto;
+
+    .cl-ui-view {
+      @extend .container-flex;
+      @extend .container-hbox;
+    }
+  }
+}
+
+.container-flex {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex: 1;
   flex: 1;
 }
 
 .container-vbox {
-  display: flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
 }
 
 .container-hbox {
-  display: flex;
   flex-direction: row;
-}
-
-.container-full-size{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.chart-container {
-
+  -webkit-flex-direction: row;
 }
 
 .container-center-block {
@@ -59,37 +74,4 @@ html, body {
   box-align: center;
 
   margin: auto;
-}
-
-.container-max-z-index{
-  z-index: 9999999;
-}
-
-.container-viewport {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-}
-
-.container-background-overlay{
-  @extend .container-full-size;
-  @extend .container-max-z-index;
-}
-
-.container-margin-10{
-  margin: 10px;
-}
-
-.container-margin-top-40 {
-  margin-top: 40px;
-}
-
-.container-margin-top {
-  margin-top: 65px;
-}
-
-.layout-padding {
-  margin-right: 5px;
-  margin-left: 5px;
 }

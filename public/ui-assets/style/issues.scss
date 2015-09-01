@@ -2,22 +2,37 @@
   position: relative;
   min-width: 450px;
   max-width: 450px;
-  max-height: calc(100vh - 118px);
+  width: 450px;
+  padding: 10px;
 
-  .panel .panel-body {
-    overflow: scroll;
-    width: 100%;
-    max-height: calc(100vh - 118px);
-  }
+  .panel {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    top: 10px;
 
-  .panel .panel-body .list-group {
-    padding-left: 0;
-    margin-bottom: 0px;
-  }
+    .panel-body {
+      position: absolute;
+      overflow: scroll;
+      top: 50px;
+      bottom: 10px;
+      left: 10px;
+      right: 0px;
+      padding: 0 10px 0 0;
 
-  .list-thumb {
-    max-width: 60px;
-    height: 60px;
-    margin-right: 10px;
+      .list-group {
+        padding-left: 0;
+        margin-bottom: 0px;
+        position:relative;
+        overflow: hidden;
+
+        .list-thumb {
+          max-width: 60px;
+          height: 60px;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }

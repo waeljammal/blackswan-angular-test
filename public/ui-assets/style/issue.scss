@@ -1,5 +1,16 @@
 .issue {
-  position: relative;
+  position:relative;
+  -webkit-flex: 1;
+  flex:1;
+  padding: 10px;
+
+  .panel {
+    position: absolute;
+    left: 0px;
+    right: 10px;
+    bottom: 10px;
+    top: 10px;
+  }
 
   .description {
     position: absolute;
