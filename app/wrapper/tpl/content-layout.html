@@ -1,7 +1,5 @@
-<!-- content: wrapper container -->
-<section class="container-main container-hbox" id="layout-view" style="position: relative;">
-    <!-- content: dashboard ui-view -->
-    <div class="container-vbox container-full-size fade-in-out" ui-view="dashboard" ng-show="$state.includes('top.repo.dashboard')"></div>
-    <!-- content: issues ui-view -->
-    <div class="container-vbox container-full-size fade-in-out" ui-view="issues" ng-show="$state.includes('top.repo.issues')"></div>
-</section>
+<!-- content: dashboard ui-view -->
+<div class="fade-in-out cl-ui-view" ui-view="dashboard" ng-show="$state.includes('top.repo.dashboard')"></div>
+
+<!-- content: issues ui-view -->
+<div class="fade-in-out cl-ui-view" ui-view="issues" ng-show="$state.includes('top.repo.issues')"></div>

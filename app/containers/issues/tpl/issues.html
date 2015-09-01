@@ -1,14 +1,9 @@
-<div class="container-main container-vbox" id="dashboard-container">
-    <div class="container-main container-hbox">
-        <panel title-label="Issues"
-               class="container-main container-vbox issues-aside">
-            <issues-data-list data="ic.issues" selected-item="ic.selectedIssue" on-select="ic.selectIssue">
+<panel title-label="Issues" class="issues-aside">
+    <issues-data-list data="ic.issues" selected-item="ic.selectedIssue" on-select="ic.selectIssue">
 
-            </issues-data-list>
-        </panel>
-        <div class="layout-padding"></div>
-        <panel title-label="Issue" class="container-main container-vbox issue">
-            <issue data="ic.selectedIssue"></issue>
-        </panel>
-    </div>
-</div>
+    </issues-data-list>
+</panel>
+
+<panel title-label="Issue" class="issue">
+    <issue data="ic.selectedIssue"></issue>
+</panel>
