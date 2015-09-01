@@ -20,7 +20,6 @@ export default class RouteConfig {
         // this uses named views so the templates can be switched out easily
         $stateProvider.state('top', {
             url: '/',
-            deepStateRedirect: true,
             views: {
                 'layout@': {
                     template: require('./../tpl/content-layout.html')
@@ -41,8 +40,11 @@ export default class RouteConfig {
 
         $stateProvider.state('top.repo', {
             url: ':owner/:repo',
+            // Can not navigate to this view directly must add /dashboard or /issues
             abstract: true,
+            // Do not reload the controller/view
             sticky: true,
+            // Supports deep states (http://christopherthielen.github.io/ui-router-extras/#/dsr)
             deepStateRedirect: true,
             resolve: {
                 resolveRepo: function(preLoad, $stateParams, $q, Search, AppState, Repository, Issues) {

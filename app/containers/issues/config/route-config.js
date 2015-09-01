@@ -11,7 +11,6 @@ export default class RouteConfig {
         $stateProvider.state('top.repo.issues', {
             url: '/issues',
             sticky: true,
-            deepStateRedirect: false,
             views: {
                 'issues@top': {
                     template: require('./../tpl/issues.html'),
