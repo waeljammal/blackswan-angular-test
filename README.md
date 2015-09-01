@@ -2,8 +2,6 @@
 
 BlackSwan github API test, built with AngularJS / Karma / Jasmine / Webpack
 
-Only tested in chrome so please test in Chrome.
-
 Two branches:
 - master is ES6 
 - typescript uses ES7 Features and Decoratorators
