@@ -81,7 +81,9 @@ export default class DashboardController {
     }
 
     /**
-     * Handles issue selection.
+     * Handles issue selection, does not set any data. Instead
+     * passes the new repo id in the URL letting the routing
+     * resolver handle setting of the data.
      *
      * Redirects to the top.repo.issues.issue state.
      *

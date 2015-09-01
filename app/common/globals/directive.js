@@ -13,7 +13,8 @@ export default class Directive extends BaseClass {
     }
 
     /**
-     * Binds the link.
+     * Binds the link function to this, allowing the link function to access properties
+     * on the object.
      *
      * @returns {function(scope: Object, element: Object, attrs: Object)} Link function
      */

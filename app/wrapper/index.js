@@ -6,7 +6,6 @@
  */
 
 import RouteConfig from './config/route-config';
-import PluginConfig from './config/plugin-config';
 import RouteValidator from './config/route-validator';
 import HeaderDirective from './directives/header';
 import ViewportDirective from './directives/app-wrapper';
@@ -32,7 +31,6 @@ angular.module(moduleName, [
 .run(RouteValidator)
 
 // Config Phase
-.config(PluginConfig)
 .config(RouteConfig);
 
 module.exports = moduleName;

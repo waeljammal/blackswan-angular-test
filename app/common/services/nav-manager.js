@@ -37,6 +37,8 @@ export class NavItem {
 
 /**
  * Provides utilities for managing navigation state and remembering parameters.
+ *
+ * Acts as the data provider for the navigation bars.
  */
 export default class NavManagerService {
     /**

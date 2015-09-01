@@ -1,5 +1,3 @@
-import RouteConfig from './config/route-config';
-
 let moduleName = 'issuesModule';
 
 angular.module(moduleName, [
@@ -10,6 +8,6 @@ angular.module(moduleName, [
     'btford.markdown'
 ])
 
-.config(RouteConfig);
+.config(require('./config/route-config'));
 
 module.exports = moduleName;

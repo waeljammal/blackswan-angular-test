@@ -4,7 +4,10 @@
 /* @ngInject */
 export default class IssuesController {
     constructor($state, Issues, NavManager) {
+        /** @private **/
         this._service = Issues;
+
+        /** @private **/
         this._nav = NavManager;
 
         /** @private **/

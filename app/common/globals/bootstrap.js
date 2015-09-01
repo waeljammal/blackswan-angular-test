@@ -18,14 +18,12 @@ export default class Bootstrap {
      */
     constructor() {
         this.dependencies = [
-
+            'ngResource',
+            'ui.router',
+            'ui.bootstrap',
+            require('../services'),
+            require('../../wrapper')
         ];
-
-        this.add('ngResource');
-        this.add('ui.router');
-        this.add('ui.bootstrap');
-        this.add(require('../services'));
-        this.add(require('../../wrapper'));
     }
 
     /**

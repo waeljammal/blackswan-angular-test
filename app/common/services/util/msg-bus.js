@@ -1,4 +1,4 @@
-import BaseClass from '../globals/base-class';
+import BaseClass from '../../globals/base-class';
 
 /**
  * This bus allows you to register event listeners and emit

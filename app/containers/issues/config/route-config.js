@@ -13,7 +13,7 @@ export default class RouteConfig {
             sticky: true,
             deepStateRedirect: false,
             views: {
-                'contentView@top': {
+                'issues@top': {
                     template: require('./../tpl/issues.html'),
                     controller: require('./../controllers/issues-controller'),
                     controllerAs: 'ic'

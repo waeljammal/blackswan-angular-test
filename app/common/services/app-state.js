@@ -1,7 +1,7 @@
 /**
  * Stores the current app state.
  *
- * This consists of the currently open repository.
+ * This consists of the currently open repository and a loading state boolean.
  */
 /* @ngInject */
 export default class AppStateService {
@@ -31,7 +31,8 @@ export default class AppStateService {
     }
 
     /**
-     * Sets the current repository
+     * Sets the current repository and emits a msg to let
+     * interested listeners know the repo has changed.
      *
      * @param repo {undefined|object}
      */
