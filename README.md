@@ -2,8 +2,6 @@
 
 BlackSwan github API test, built with AngularJS / Karma / Jasmine / Webpack
 
-Only tested in chrome so please test in Chrome.
-
 Features:
 - Strong typing (Typescript 1.5.3)
 - Decorators (@inject, @service, @controller, @directive, @autobind, @log)
