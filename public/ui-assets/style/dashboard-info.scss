@@ -42,7 +42,8 @@
 
 .dashboard-issues {
   position: relative;
-  height: calc(100vh - 119px);
+  height: calc(100vh - 75px);
+  min-height: 775px;
 
   .panel .panel-body {
     overflow: scroll;
