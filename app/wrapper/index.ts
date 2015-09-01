@@ -21,7 +21,6 @@
     .run(require('./config/route-validator'))
 
     // Config Phase
-    .config(require('./config/plugin-config'))
     .config(require('./config/route-config'));
 
     module.exports = moduleName;

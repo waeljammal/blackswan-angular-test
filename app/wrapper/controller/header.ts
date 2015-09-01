@@ -50,6 +50,7 @@ class HeaderController {
         // taken care of loading the repo if provided through the url.
         this.update(this._appState.currentRepo);
 
+        // Lets you still use this. when these functions are called outside the scope of this controller.
         this.getRepositories = (value) => { return this.handleGetRepositories(value); };
         this.selectRepo = ($item, $model, $label) => { this.handleSelectRepo($item, $model, $label); };
     }
