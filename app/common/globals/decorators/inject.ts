@@ -13,21 +13,27 @@ export module op.metadata {
             this._propertyName = property;
             this._injectionKeys = keys;
 
+            // Annotate the constructor, this sets up $inject for us
             let $inject = angular.injector();
             let result = $inject.annotate(this._target.constructor);
 
+            // Append our property injection to the constructor list, this is more efficient
+            // just let angular take care of it for us.
             for (let i = 0; i < keys.length; i++) {
                 result.push(keys[i]);
                 this._keys[keys[i]] = result.length - 1;
             }
 
+            // Replace the $inject for the constructor
             this._target.constructor.$inject = result;
 
+            // Register our custom __inject__
             /* tslint:disable no-string-literal */
             if (!this._target['__inject__']) {
                 this._target['__inject__'] = [];
             }
 
+            // Push our inject handler into the list
             this._target['__inject__'].push((instance, args) => {
                 // console.log('Process Injection Point [Target]: ' +
                 //    instance['__proto__'].constructor.name +
@@ -38,6 +44,8 @@ export module op.metadata {
             /* tslint:enable no-string-literal */
         }
 
+        // Handles actual injection into a property of function
+        // TODO: Test function, only property has been tested...
         inject(values: Array<any>, target: any): void {
             try {
                 if (typeof target[this._propertyName] === 'function') {
@@ -51,6 +59,11 @@ export module op.metadata {
         }
     }
 
+    /**
+     * Invoked when a property with this metadata is found.
+     * @param injectionKeys Optional keys to use otherwise property name is used.
+     * @returns {function(Object, string): void}
+     */
     export function inject(...injectionKeys) {
         return function recordInjection(target: Object, decoratedPropertyName: string): void {
             // console.log('Record Injection Point [Target]: ' +
@@ -64,8 +77,9 @@ export module op.metadata {
                 keys.push(decoratedPropertyName);
             }
 
+            // Create a new injection point, at the moment this is inefficient
+            // TODO Use 1 injection point for a class instead of 1 per injection decorator
             let point = new InjectionPoint(target, decoratedPropertyName, keys);
-
             pending.push(point);
         };
     };

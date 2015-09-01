@@ -9,11 +9,7 @@ export module op.metadata {
     export function service(...values: string[]): any {
         /* tslint:disable no-string-literal */
         return (target: Function) => {
-            // Factory creates instance of directive once for
-            // the life time of the app. I do not recommend
-            // change this as it would be inefficient, link
-            // is called per usage of the directive.
-            var factory = (...args:any[]):ng.IDirective => {
+            var factory = (...args:any[]):ng.IServiceProvider => {
                 // Creates the instance
                 var newInstance = Object.create(target.prototype);
 
