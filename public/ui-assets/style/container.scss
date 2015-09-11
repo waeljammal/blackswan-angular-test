@@ -21,7 +21,7 @@ app-wrapper {
   -webkit-align-content: stretch;
 
   .layout {
-    //height:100%;
+    min-height: 764px;
     display:flex;
     display: -webkit-flex;
     align-content: stretch;
