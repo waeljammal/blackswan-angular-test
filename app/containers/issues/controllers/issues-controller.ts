@@ -1,4 +1,7 @@
 import {inject, controller} from 'op/metadata';
+import {IssuesService} from '../../../common/services/services';
+import * as m from '../../../common/models/models';
+
 
 /**
  * Issues Controller glues all the different modules together.
@@ -14,7 +17,7 @@ class IssuesController {
 
     /** @private **/
     @inject('Issues')
-    private _service: IIssuesService;
+    private _service: IssuesService;
 
     /** @private **/
     @inject('NavManager')
@@ -25,7 +28,7 @@ class IssuesController {
     private $state;
 
     constructor() {
-        this.selectIssue = (d: IIssue) => { this.doSelectIssue(d); };
+        this.selectIssue = (d: m.Issue) => { this.doSelectIssue(d); };
     }
 
     /**
@@ -33,7 +36,7 @@ class IssuesController {
      *
      * @param issue IIssue
      */
-    set selectedIssue(issue: IIssue) {
+    set selectedIssue(issue: m.Issue) {
         this._service.currentIssue = issue;
     }
 
@@ -42,7 +45,7 @@ class IssuesController {
      *
      * @returns IIssue
      */
-    get selectedIssue(): IIssue {
+    get selectedIssue(): m.Issue {
         return this._service.currentIssue;
     }
 
@@ -51,7 +54,7 @@ class IssuesController {
      *
      * @returns Array of issues.
      */
-    get issues(): Array<IIssue> {
+    get issues(): Array<m.Issue> {
         return this._service.issueList;
     }
 
@@ -62,7 +65,7 @@ class IssuesController {
      *
      * @param issue {Object} Selected Issue.
      */
-    doSelectIssue(issue: IIssue): void {
+    doSelectIssue(issue: m.Issue): void {
         let params = this._nav.getParams(this.$state.current.name);
         params.issue = issue.id.toString();
 

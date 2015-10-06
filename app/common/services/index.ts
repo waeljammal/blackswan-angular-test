@@ -4,7 +4,6 @@ angular.module(moduleName, [])
 
 .service('AppState', require('./app-state'))
 .service('NavManager', require('./nav-manager'))
-.service('Storage', require('./storage'))
 .service('MsgBus', require('./msg-bus'))
 
 .service('Search', require('./rest/search'))

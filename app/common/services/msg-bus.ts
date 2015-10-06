@@ -5,7 +5,7 @@ import {inject, service} from 'op/metadata';
  * events from anywhere in your application.
  */
 @service()
-class MsgBus implements IMsgBus {
+export class MsgBus {
     /**
      * @private
      */
@@ -39,4 +39,4 @@ class MsgBus implements IMsgBus {
     }
 }
 
-export = MsgBus;
+module.exports = MsgBus;

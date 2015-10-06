@@ -12,10 +12,10 @@
         require('../containers/issues')
     ])
 
-    // Site Header
-    .directive('headerView', require('./directives/header'))
-    // Content view layout
+    // Content view layout (header+body)
     .directive('appWrapper', require('./directives/app-wrapper'))
+    // Header
+    .directive('headerView', require('./directives/header'))
 
     // Run Phase
     .run(require('./config/route-validator'))

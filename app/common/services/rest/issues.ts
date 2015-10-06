@@ -1,4 +1,7 @@
 /// <reference path='issues.d.ts' />
+import {AppStateService} from '../services';
+import * as m from '../../models/models';
+
 
 /**
  * This services provides functions to load all issues for the active
@@ -8,16 +11,16 @@
 import {inject, service} from 'op/metadata';
 
 @service()
-class IssuesService implements IIssuesService {
+export class IssuesService {
     /**
      * Current Issue
      */
-    public currentIssue: IIssue = null;
+    public currentIssue: m.Issue = null;
 
     /**
      * All Issues
      */
-    public issueList: Array<IIssue> = [];
+    public issueList: Array<m.Issue> = [];
 
     /** @private **/
     @inject()
@@ -25,7 +28,7 @@ class IssuesService implements IIssuesService {
 
     /** @private **/
     @inject('AppState')
-    private _state: IAppStateService;
+    private _state: AppStateService;
 
     @inject()
     private $resource: ng.resource.IResourceService;
@@ -57,7 +60,7 @@ class IssuesService implements IIssuesService {
      * @param id {string} Id of the issue
      * @returns {Object}
      */
-    find(id: string): IIssue {
+    find(id: string): m.Issue {
         for (let i = 0; i < this.issueList.length; i++) {
             if (this.issueList[i].id.toString() === id) {
                 return this.issueList[i];
@@ -72,9 +75,8 @@ class IssuesService implements IIssuesService {
      *
      * @returns {Object[]}
      */
-    loadAll(): ng.IPromise<Array<IIssue>> {
+    loadAll(): ng.IPromise<Array<m.Issue>> {
         let def = this.$q.defer();
-
         this.resource().query({
             state: this.issueListState,
             sort: this.issueListSort,
@@ -115,4 +117,4 @@ class IssuesService implements IIssuesService {
     }
 }
 
-export = IssuesService;
+module.exports = IssuesService;

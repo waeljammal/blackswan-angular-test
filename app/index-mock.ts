@@ -6,8 +6,11 @@
      */
     let Bootstrap = require('./common/globals/bootstrap');
 
-// Global dependencies bootstrap
+    // Global dependencies bootstrap
     let bootstrap: IBootstrap = new Bootstrap();
+
+    // It allow to load all the mock file
     bootstrap.add(require('./common/services/mock/index'));
+
     bootstrap.start();
 })();

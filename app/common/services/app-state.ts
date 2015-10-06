@@ -1,12 +1,12 @@
 import {inject, service} from 'op/metadata';
-
+import {MsgBus} from './services';
 /**
  * Stores the current app state.
  *
  * This consists of the currently open repository.
  */
 @service()
-class AppStateService implements IAppStateService {
+export class AppStateService {
     /**
      * True if app is in a loading state.
      *
@@ -26,7 +26,7 @@ class AppStateService implements IAppStateService {
      * Handles messaging between components.
      */
     @inject('MsgBus')
-    private _msgBus: IMsgBus;
+    private _msgBus: MsgBus;
 
     /**
      * Name of the event fired when the repository changes.
@@ -57,4 +57,6 @@ class AppStateService implements IAppStateService {
     }
 }
 
-export = AppStateService;
+module.exports = AppStateService;
+
+

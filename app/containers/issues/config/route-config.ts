@@ -1,3 +1,5 @@
+import {AppStateService, IssuesService} from '../../../common/services/services';
+
 /**
  * Route configuration for the issues glue container.
  */
@@ -21,7 +23,7 @@ class RouteConfig {
             },
             resolve: {
                 setupIssues: function($state, $timeout: ng.ITimeoutService, resolveRepo, AppState:
-                                      IAppStateService, Issues: IIssuesService, NavManager)
+                                      AppStateService, Issues: IssuesService, NavManager)
                 {
                     // We wont load issues or redirect if NavManager already contains params for issues.issue.
                     if (AppState.currentRepo && !NavManager.getParams('top.repo.issues.issue')) {
@@ -51,7 +53,7 @@ class RouteConfig {
             sticky: true,
             deepStateRedirect: false,
             resolve: {
-                setupIssue: function($stateParams: any, preLoad: any, AppState: IAppStateService, Issues, setupIssues: any) {
+                setupIssue: function($stateParams: any, preLoad: any, AppState: AppStateService, Issues, setupIssues: any) {
                     Issues.currentIssue = Issues.find($stateParams.issue);
                 }
             }

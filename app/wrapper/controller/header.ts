@@ -1,14 +1,11 @@
 import {inject, controller} from 'op/metadata';
+import {AppStateService, SearchService, MsgBus} from '../../common/services/services';
 
 /**
  * Global header controller for the site.
  */
 @controller()
 class HeaderController {
-
-    /** @private **/
-    @inject()
-    public $state;
 
     /**
      * Handles repository searching.
@@ -26,21 +23,27 @@ class HeaderController {
     public selectedRepo: IRepository;
 
     /** @private **/
+    @inject()
+    public $state;
+
+    /** @private **/
     // TODO Strongly type the navmanager
     @inject('NavManager')
     private _nav: any;
 
     /** @private **/
     @inject('AppState')
-    private _appState: IAppStateService;
+    private _appState: AppStateService;
 
     /** @private **/
     @inject('Search')
-    private _searchService: ISearchService;
+    private _searchService: SearchService;
 
     /** @private **/
     @inject('MsgBus')
-    private _msgBus: IMsgBus;
+    private _msgBus: MsgBus;
+
+
 
     constructor() {
         // Listen for repo changes

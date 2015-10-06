@@ -6,7 +6,7 @@
 import {inject, service} from 'op/metadata';
 
 @service()
-class SearchService implements ISearchService {
+export class SearchService {
     /**
      * List of all the repositories found using
      * the search(term) function.
@@ -79,4 +79,4 @@ class SearchService implements ISearchService {
     }
 }
 
-export = SearchService;
+module.exports = SearchService;
