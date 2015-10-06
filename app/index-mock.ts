@@ -7,7 +7,7 @@
     let Bootstrap = require('./common/globals/bootstrap');
 
 // Global dependencies bootstrap
-    let bootstrap:IBootstrap = new Bootstrap();
-    bootstrap.add(require('./common/services/mock/index'))
+    let bootstrap: IBootstrap = new Bootstrap();
+    bootstrap.add(require('./common/services/mock/index'));
     bootstrap.start();
 })();

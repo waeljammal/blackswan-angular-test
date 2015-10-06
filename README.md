@@ -19,6 +19,7 @@ The project uses a modular architecture where you build re-usable modules and gl
 
 - Install
     - npm install
+    - bower install
     - npm install -g typedoc
     - npm install -g typescript
 

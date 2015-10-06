@@ -3,7 +3,7 @@
  */
 angular.module('repository-mocks', ['ngMockE2E'])
     .run(function($httpBackend) {
-        var data = {
+        let data = {
             'id': 24195339,
             'name': 'angular',
             'full_name': 'angular/angular',

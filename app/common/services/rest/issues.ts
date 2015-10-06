@@ -97,10 +97,7 @@ class IssuesService implements IIssuesService {
 
         let queryAction: ng.resource.IActionDescriptor = {
             method: 'GET',
-            isArray: true,
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
+            isArray: true
         };
 
         let getIssueAction: ng.resource.IActionDescriptor = {
@@ -108,9 +105,6 @@ class IssuesService implements IIssuesService {
             isArray: true,
             params: {
                 number: 0
-            },
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
             }
         };
 

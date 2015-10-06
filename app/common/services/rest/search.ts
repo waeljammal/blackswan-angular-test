@@ -61,10 +61,7 @@ class SearchService implements ISearchService {
 
         let queryAction: ng.resource.IActionDescriptor = {
             method: 'GET',
-            isArray: false,
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
+            isArray: false
         };
 
         let getIssueAction: ng.resource.IActionDescriptor = {
@@ -72,9 +69,6 @@ class SearchService implements ISearchService {
             isArray: true,
             params: {
                 number: 0
-            },
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
             }
         };
 

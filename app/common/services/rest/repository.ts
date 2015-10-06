@@ -39,10 +39,7 @@ class RepositoryService implements IRepositoryService {
 
         let queryAction: ng.resource.IActionDescriptor = {
             method: 'GET',
-            isArray: false,
-            transformResponse: (data: string) => {
-                return angular.fromJson(data);
-            }
+            isArray: false
         };
 
         return <ng.resource.IResourceClass<any>> this.$resource(baseApi, params, {

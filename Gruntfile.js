@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                     devtool: "source-map",
                     debug: true,
                     entry: {
-                        app: './index-mock.js',
+                        app: './index-mock.ts',
                         vendor: webpackConfig.entry.vendor
                     }
                 }

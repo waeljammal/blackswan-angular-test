@@ -3,7 +3,7 @@
  */
 angular.module('issues-mocks', ['ngMockE2E'])
     .run(function($httpBackend) {
-        var data = [
+        let data = [
             {
                 'url': 'https://api.github.com/repos/angular/angular/issues/3720',
                 'labels_url': 'https://api.github.com/repos/angular/angular/issues/3720/labels{/name}',
