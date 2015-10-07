@@ -1,3 +1,5 @@
+/// <reference path="./typings/custom.ts" />
+
 (() => {
     /**
      * @author Wael Jammal

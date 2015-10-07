@@ -1,6 +1,7 @@
 import {inject, controller} from 'op/metadata';
-import {AppStateService as AppState, MsgBus} from '../../common/services/helpers/helpers';
 import {SearchService} from '../../common/services/rest/rest';
+
+import helpers = require('../../common/services/helpers/helpers');
 
 /**
  * Global header controller for the site.
@@ -34,7 +35,7 @@ class HeaderController {
 
     /** @private **/
     @inject('AppState')
-    private _appState: AppState;
+    private _appState: helpers.AppStateService;
 
     /** @private **/
     @inject('Search')
@@ -42,7 +43,7 @@ class HeaderController {
 
     /** @private **/
     @inject('MsgBus')
-    private _msgBus: MsgBus;
+    private _msgBus: helpers.MsgBus;
 
 
 

@@ -6,9 +6,9 @@ import {service} from 'op/metadata';
 
 export class NavItem {
 
-    public label:string;
-    public path:string;
-    public root:string;
+    public label: string;
+    public path: string;
+    public root: string;
 
     private _children = [];
     private currentRoute = undefined;

@@ -1,8 +1,8 @@
 import {inject, controller} from 'op/metadata';
-//import {AppStateService, MsgBus, IssuesService} from '../../../common/services/services';
+import {IssuesService} from '../../../common/services/rest/rest';
+import {Issue} from '../../../common/models/models';
 
-import model = op.model;
-import s = services;
+import helpers = require('../../../common/services/helpers/helpers');
 
 /**
  * Dashboard Controller glues all the different modules together.
@@ -25,13 +25,13 @@ class DashboardController {
     public selectIssue: Function;
 
     @inject('AppState')
-    private _appState: s.AppStateService;
+    private _appState: helpers.AppStateService;
 
     @inject('MsgBus')
-    private _msgBus: s.MsgBus;
+    private _msgBus: helpers.MsgBus;
 
     @inject('Issues')
-    private _issuesService: s.IssuesService;
+    private _issuesService: IssuesService;
 
     @inject('NavManager')
     private _nav: any;
@@ -45,7 +45,7 @@ class DashboardController {
          *
          * @param d {Object} Issue.
          */
-        $scope.selectIssue = (d: model.Issue) => { this.doSelectIssue(d); };
+        $scope.selectIssue = (d: Issue) => { this.doSelectIssue(d); };
 
         /**
          * Labels used for the charts.
@@ -84,7 +84,7 @@ class DashboardController {
      *
      * @param issue Issue
      */
-    set selectedIssue(issue: model.Issue) {
+    set selectedIssue(issue: Issue) {
         this._issuesService.currentIssue = issue;
     }
 
@@ -93,7 +93,7 @@ class DashboardController {
      *
      * @returns Returns selected issue
      */
-    get selectedIssue(): model.Issue {
+    get selectedIssue(): Issue {
         return this._issuesService.currentIssue;
     }
 
@@ -102,7 +102,7 @@ class DashboardController {
      *
      * @returns {Object[]} Array of issues.
      */
-    get issues(): Array<model.Issue> {
+    get issues(): Array<Issue> {
         return this._issuesService.issueList;
     }
 
@@ -113,7 +113,7 @@ class DashboardController {
      *
      * @param issue Selected Issue.
      */
-    doSelectIssue (issue: model.Issue): void {
+    doSelectIssue (issue: Issue): void {
         let params = this._nav.getParams(this.$state.current.name);
         params.issue = issue.id.toString();
 

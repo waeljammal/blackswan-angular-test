@@ -349,6 +349,7 @@ declare module angular {
          */
         directive(name: string, inlineAnnotatedFunction: any[]): IModule;
         directive(object: Object): IModule;
+        directive(name: string, object: Object): IModule;
         /**
          * Register a service factory, which will be called to return the service instance. This is short for registering a service where its provider consists of only a $get property, which is the given service factory function. You should use $provide.factory(getFn) if you do not need to configure your service in a provider.
          *
@@ -383,6 +384,7 @@ declare module angular {
         service(name: string, serviceConstructor: Function): IModule;
         service(name: string, inlineAnnotatedConstructor: any[]): IModule;
         service(object: Object): IModule;
+        service(name: string, object: Object): IModule;
         /**
          * Register a value service with the $injector, such as a string, a number, an array, an object or a function. This is short for registering a service where its provider's $get property is a factory function that takes no arguments and returns the value service.
 

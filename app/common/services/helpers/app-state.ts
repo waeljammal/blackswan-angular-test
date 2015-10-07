@@ -1,5 +1,5 @@
 import {inject, service} from 'op/metadata';
-import {MsgBus} from './helpers';
+import helpers = require('./helpers');
 
 /**
  * Stores the current app state.
@@ -13,7 +13,7 @@ export class AppStateService {
      *
      * @type {boolean} If app is loading something.
      */
-    public isLoading:boolean = false;
+    public isLoading: boolean = false;
 
     /**
      * Currently selected repository.
@@ -21,20 +21,20 @@ export class AppStateService {
      * @type {IRepository}
      * @private
      */
-    private _currentRepo:IRepository = undefined;
+    private _currentRepo: IRepository = undefined;
 
     /**
      * Handles messaging between components.
      */
     @inject('MsgBus')
-    private _msgBus: MsgBus;
+    private _msgBus: helpers.MsgBus;
 
     /**
      * Name of the event fired when the repository changes.
      *
      * @returns Event name
      */
-    get REPO_CHANGE_EVENT():string {
+    get REPO_CHANGE_EVENT(): string {
         return 'repoChangedEvent';
     }
 
@@ -43,7 +43,7 @@ export class AppStateService {
      *
      * @param repo Repository
      */
-    set currentRepo(repo:IRepository) {
+    set currentRepo(repo: IRepository) {
         this._currentRepo = repo;
         this._msgBus.emitMsg(this.REPO_CHANGE_EVENT, repo);
     }
@@ -53,7 +53,7 @@ export class AppStateService {
      *
      * @returns Repository
      */
-    get currentRepo():IRepository {
+    get currentRepo(): IRepository {
         return this._currentRepo;
     }
 }

@@ -11,7 +11,7 @@ module.exports = {
     },
 
     entry: {
-        app: ['./index.ts'],
+        app: ['./app/index.ts'],
         vendor: [
             'script!chart',
             'angular',
@@ -33,7 +33,7 @@ module.exports = {
 
     },
     devtool: 'source-map',
-    context: __dirname + '/app',
+    context: __dirname,
     output: {
         filename: 'bundle.js',
         path: './target/js',
@@ -80,6 +80,7 @@ module.exports = {
         ],
         alias: {
             'op/metadata': __dirname + "/app/common/globals/decorators/metadata.ts",
+            'op/helpers': __dirname + "/app/common/services/helpers/helpers.ts",
 
             'style': __dirname + "/public/ui-assets/style/main.scss",
 
