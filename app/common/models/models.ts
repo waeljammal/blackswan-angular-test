@@ -1,5 +1,4 @@
-import {Issue} from './issue';
-import {Repository} from './repository';
+import {Issue as Issue} from './issue';
+import {Repository as Repository} from './repository';
 
-export {Issue} from './issue';
-export {Repository} from './repository';
+export {Issue, Repository}

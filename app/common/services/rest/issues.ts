@@ -1,8 +1,8 @@
 /// <reference path='issues.d.ts' />
 
-import {Issue} from '../../models/models';
 import {inject, service} from 'op/metadata';
-import helpers = require('../helpers/helpers');
+import helpers = require('op/helpers');
+import model = require('op/model');
 
 /**
  * This services provides functions to load all issues for the active
@@ -14,12 +14,12 @@ export class IssuesService {
     /**
      * Current Issue
      */
-    public currentIssue: Issue;
+    public currentIssue: model.Issue;
 
     /**
      * All Issues
      */
-    public issueList: Array<Issue> = [];
+    public issueList: Array<model.Issue> = [];
 
     /** @private **/
     @inject()
@@ -59,10 +59,10 @@ export class IssuesService {
      * @param id {string} Id of the issue
      * @returns {Object}
      */
-    find(id: string): Issue {
+    find(id: string): model.Issue {
         for (let i = 0; i < this.issueList.length; i++) {
             if (this.issueList[i].id.toString() === id) {
-                return new Issue(this.issueList[i]);
+                return new model.Issue(this.issueList[i]);
             }
         }
 
@@ -74,7 +74,7 @@ export class IssuesService {
      *
      * @returns {Object[]}
      */
-    loadAll(): ng.IPromise<Array<Issue>> {
+    loadAll(): ng.IPromise<Array<model.Issue>> {
         let def = this.$q.defer();
         this.resource().query({
             state: this.issueListState,
@@ -85,7 +85,7 @@ export class IssuesService {
             /*jshint camelcase: true */
             login: this._state.currentRepo.owner.login
         }, (data) => {
-            this.issueList = Issue.parse1(data);
+            this.issueList = model.Issue.parse1(data);
             def.resolve(this.issueList);
         });
 

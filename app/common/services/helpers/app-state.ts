@@ -1,6 +1,7 @@
 import {inject, service} from 'op/metadata';
-import helpers = require('./helpers');
 import {Repository} from '../../models/models';
+
+import helpers = require('op/helpers');
 
 /**
  * Stores the current app state.

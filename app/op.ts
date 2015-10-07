@@ -1,1 +1,1 @@
-export * from './common/common';
+/// <reference path="./common/common.ts" />
