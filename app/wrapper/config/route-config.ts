@@ -1,3 +1,6 @@
+import * as rest from 'op/rest';
+import * as helper from 'op/helpers';
+
 /**
  * Configures routes for the wrapper.
  */
@@ -8,7 +11,7 @@ class RouteConfig {
      * @param $stateProvider Current state provider
      * @param $urlRouterProvider Url route provider
      */
-    constructor($stateProvider, $urlRouterProvider) {
+    constructor($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
         // The default path if an incorrect path is supplied by the user
         $urlRouterProvider.otherwise('/');
 
@@ -38,7 +41,9 @@ class RouteConfig {
             url: ':owner/:repo',
             abstract: true, // Can not navigate directly to this path
             resolve: {
-                resolveRepo: function(preLoad, $stateParams, $q, Search, AppState, Repository, Issues) {
+                resolveRepo: function(preLoad, $stateParams, $q, Search: rest.SearchService,
+                                      AppState: helper.AppStateService, Repository: rest.RepositoryService,
+                                      Issues: rest.IssuesService) {
                     let def = $q.defer();
 
                     // Check if we already have this repo
