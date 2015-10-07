@@ -25,7 +25,7 @@ export class Issue {
         let result: Issue[] = [];
 
 
-        for(let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             let issue = data[i];
             result[i] = new Issue(issue);
         }

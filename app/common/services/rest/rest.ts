@@ -1,5 +1,5 @@
-import {SearchService as SearchService} from './search';
-import {RepositoryService as RepositoryService} from './repository';
-import {IssuesService as IssuesService} from './issues';
+import {SearchService} from './search';
+import {RepositoryService} from './repository';
+import {IssuesService} from './issues';
 
 export {SearchService, RepositoryService, IssuesService}

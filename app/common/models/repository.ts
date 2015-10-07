@@ -24,7 +24,7 @@ export class Repository {
         let result: Repository[] = [];
 
 
-        for(let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             let issue = data[i];
             result[i] = new Repository(issue);
         }

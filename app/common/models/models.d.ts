@@ -1,6 +1,3 @@
 declare module 'op/model' {
-    import {Issue as Issue} from 'issue';
-    import {Repository as Repository} from 'repository';
-
-    export {Issue, Repository}
+    export * from 'models';
 }
