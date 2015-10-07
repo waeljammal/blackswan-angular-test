@@ -1,5 +1,6 @@
 import {inject, controller} from 'op/metadata';
 import {SearchService} from '../../common/services/rest/rest';
+import {Repository} from '../../common/models/models';
 
 import helpers = require('../../common/services/helpers/helpers');
 
@@ -22,7 +23,7 @@ class HeaderController {
     /**
      * Selected Repository
      */
-    public selectedRepo: IRepository;
+    public selectedRepo: Repository;
 
     /** @private **/
     @inject()
@@ -130,7 +131,7 @@ class HeaderController {
      *
      * @param data IRepository.
      */
-    update(data: IRepository) {
+    update(data: Repository) {
         this.selectedRepo = data;
     }
 
@@ -157,9 +158,9 @@ class HeaderController {
      * @param {string} term Partial or full name of repository.
      * @returns {*|Promise|Promise.<T>} Promise.
      */
-    handleGetRepositories(term: string): ng.IPromise<Array<IRepository>> {
-        return this._searchService.search(term).then((data: Array<IRepository>) => {
-            return data.map(function(item: IRepository){
+    handleGetRepositories(term: string): ng.IPromise<Array<Repository>> {
+        return this._searchService.search(term).then((data: Array<Repository>) => {
+            return data.map(function(item: Repository){
                 return item;
             });
         });
@@ -172,7 +173,7 @@ class HeaderController {
      * @param $model Current Model.
      * @param $label Label of the selected repository.
      */
-    public handleSelectRepo($item: IRepository, $model: Object, $label: string) {
+    public handleSelectRepo($item: Repository, $model: Object, $label: string) {
         let params = this._nav.getParams(this.$state.current.name);
         params.repo = $item.name;
         params.owner = $item.owner.login;

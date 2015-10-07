@@ -1,5 +1,6 @@
 import {inject, service} from 'op/metadata';
 import helpers = require('./helpers');
+import {Repository} from '../../models/models';
 
 /**
  * Stores the current app state.
@@ -21,7 +22,7 @@ export class AppStateService {
      * @type {IRepository}
      * @private
      */
-    private _currentRepo: IRepository = undefined;
+    private _currentRepo: Repository = undefined;
 
     /**
      * Handles messaging between components.
@@ -43,7 +44,7 @@ export class AppStateService {
      *
      * @param repo Repository
      */
-    set currentRepo(repo: IRepository) {
+    set currentRepo(repo: Repository) {
         this._currentRepo = repo;
         this._msgBus.emitMsg(this.REPO_CHANGE_EVENT, repo);
     }
@@ -53,7 +54,7 @@ export class AppStateService {
      *
      * @returns Repository
      */
-    get currentRepo(): IRepository {
+    get currentRepo(): Repository {
         return this._currentRepo;
     }
 }

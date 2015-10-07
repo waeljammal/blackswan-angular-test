@@ -2,8 +2,8 @@
  * This service exposes the github search API and lets you find a
  * repository by it's full name from the cached list.
  */
-
 import {inject, service} from 'op/metadata';
+import {Repository} from '../../models/models';
 
 @service()
 export class SearchService {
@@ -11,7 +11,7 @@ export class SearchService {
      * List of all the repositories found using
      * the search(term) function.
      */
-    public repositories: Array<IRepository> = [];
+    public repositories: Array<Repository> = [];
 
     @inject()
     private $q: ng.IQService;
@@ -25,7 +25,7 @@ export class SearchService {
      * @param fullName Eg. angular/angular.
      * @returns Repository or undefined.
      */
-    find(fullName: string): IRepository {
+    find(fullName: string): Repository {
         for (let i = 0; i < this.repositories.length; i++) {
             if (this.repositories[i].full_name === fullName) {
                 return this.repositories[i];
@@ -41,15 +41,14 @@ export class SearchService {
      * @param term Partial or full name of a repository.
      * @returns Array of repositories.
      */
-    search(term: string): ng.IPromise<Array<IRepository>> {
+    search(term: string): ng.IPromise<Array<Repository>> {
         let def = this.$q.defer();
 
         this.resource().query({
             term: term
         }, (data) => {
-            this.repositories = data.items;
-            def.resolve(data.items);
-            console.log(data);
+            this.repositories = Repository.parse1(data.items);
+            def.resolve(this.repositories);
         });
 
         return def.promise;

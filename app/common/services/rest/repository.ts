@@ -1,10 +1,11 @@
 import {inject, service} from 'op/metadata';
+import {Repository} from '../../models/models';
 
 /**
  * Used to load a single repository from the Google public API.
  */
 @service()
-export class RepositoryService implements IRepositoryService {
+export class RepositoryService {
     /** @private **/
     @inject()
     private $q: ng.IQService;
@@ -20,14 +21,14 @@ export class RepositoryService implements IRepositoryService {
      * @param repo Name of the repository.
      * @returns Repository information.
      */
-    load(owner: string, repo: string): ng.IPromise<IRepository> {
+    load(owner: string, repo: string): ng.IPromise<Repository> {
         let def = this.$q.defer();
 
         this.resource().query({
             owner: owner,
             repo: repo
         }, (data) => {
-            def.resolve(data);
+            def.resolve(new Repository(data));
         });
 
         return def.promise;

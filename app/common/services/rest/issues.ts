@@ -62,7 +62,7 @@ export class IssuesService {
     find(id: string): Issue {
         for (let i = 0; i < this.issueList.length; i++) {
             if (this.issueList[i].id.toString() === id) {
-                return this.issueList[i];
+                return new Issue(this.issueList[i]);
             }
         }
 
@@ -85,8 +85,8 @@ export class IssuesService {
             /*jshint camelcase: true */
             login: this._state.currentRepo.owner.login
         }, (data) => {
-            this.issueList = data;
-            def.resolve(data);
+            this.issueList = Issue.parse1(data);
+            def.resolve(this.issueList);
         });
 
         return def.promise;

@@ -1,6 +1,6 @@
 import {inject, controller} from 'op/metadata';
 import {IssuesService} from '../../../common/services/rest/rest';
-import {Issue} from '../../../common/models/models';
+import {Issue, Repository} from '../../../common/models/models';
 
 import helpers = require('../../../common/services/helpers/helpers');
 
@@ -75,7 +75,7 @@ class DashboardController {
      *
      * @returns {Object|undefined}
      */
-    get repo(): IRepository {
+    get repo(): Repository {
         return this._appState.currentRepo;
     }
 
@@ -129,7 +129,7 @@ class DashboardController {
      *
      * @param data {Object} Repository.
      */
-    updateCharts(data: IRepository) {
+    updateCharts(data: Repository) {
         if (data === undefined) {
             return;
         }
