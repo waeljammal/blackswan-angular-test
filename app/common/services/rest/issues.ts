@@ -1,7 +1,7 @@
 /// <reference path='issues.d.ts' />
-import {AppStateService} from '../services';
-import * as m from '../../models/models';
 
+import {AppStateService as AppState, MsgBus} from '../helpers/helpers';
+import {Issue} from '../../models/models';
 
 /**
  * This services provides functions to load all issues for the active
@@ -15,44 +15,44 @@ export class IssuesService {
     /**
      * Current Issue
      */
-    public currentIssue: m.Issue = null;
+    public currentIssue:Issue;
 
     /**
      * All Issues
      */
-    public issueList: Array<m.Issue> = [];
+    public issueList:Array<Issue> = [];
 
     /** @private **/
     @inject()
-    private $q: ng.IQService;
+    private $q:ng.IQService;
 
     /** @private **/
     @inject('AppState')
-    private _state: AppStateService;
+    private _state: AppState;
 
     @inject()
-    private $resource: ng.resource.IResourceService;
+    private $resource:ng.resource.IResourceService;
 
     /**
      * What state to use for the issues.
      *
      * @type {string}
      */
-    private issueListState: string = 'open';
+    private issueListState:string = 'open';
 
     /**
      * Sorts by created date.
      *
      * @type {string}
      */
-    private issueListSort: string = 'created';
+    private issueListSort:string = 'created';
 
     /**
      * Sorts in descending order.
      *
      * @type {string}
      */
-    private issueListDirection: string = 'desc';
+    private issueListDirection:string = 'desc';
 
     /**
      * Returns a single issue or undefined if no issue was found.
@@ -60,7 +60,7 @@ export class IssuesService {
      * @param id {string} Id of the issue
      * @returns {Object}
      */
-    find(id: string): m.Issue {
+    find(id:string):Issue {
         for (let i = 0; i < this.issueList.length; i++) {
             if (this.issueList[i].id.toString() === id) {
                 return this.issueList[i];
@@ -75,7 +75,7 @@ export class IssuesService {
      *
      * @returns {Object[]}
      */
-    loadAll(): ng.IPromise<Array<m.Issue>> {
+    loadAll():ng.IPromise<Array<Issue>> {
         let def = this.$q.defer();
         this.resource().query({
             state: this.issueListState,
@@ -93,16 +93,16 @@ export class IssuesService {
         return def.promise;
     }
 
-    private resource(): IIssuesResource {
-        let baseApi: string = 'https://api.github.com/repos/:login/:name/issues/:number';
-        let params: any = { login: '@login', name: '@name', number: '@number' };
+    private resource():IIssuesResource {
+        let baseApi:string = 'https://api.github.com/repos/:login/:name/issues/:number';
+        let params:any = {login: '@login', name: '@name', number: '@number'};
 
-        let queryAction: ng.resource.IActionDescriptor = {
+        let queryAction:ng.resource.IActionDescriptor = {
             method: 'GET',
             isArray: true
         };
 
-        let getIssueAction: ng.resource.IActionDescriptor = {
+        let getIssueAction:ng.resource.IActionDescriptor = {
             method: 'GET',
             isArray: true,
             params: {

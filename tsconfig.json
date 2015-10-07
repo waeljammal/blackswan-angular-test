@@ -18,6 +18,7 @@
     "!node_modules/**/*.ts"
   ],
   "files": [
+    "./app/typings/custom.ts",
     "./app/typings/custom.d.ts",
     "./app/index.ts",
     "./app/common/globals/bootstrap.d.ts",

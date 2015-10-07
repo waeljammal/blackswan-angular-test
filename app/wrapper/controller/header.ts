@@ -1,5 +1,6 @@
 import {inject, controller} from 'op/metadata';
-import {AppStateService, SearchService, MsgBus} from '../../common/services/services';
+import {AppStateService as AppState, MsgBus} from '../../common/services/helpers/helpers';
+import {SearchService} from '../../common/services/rest/rest';
 
 /**
  * Global header controller for the site.
@@ -33,7 +34,7 @@ class HeaderController {
 
     /** @private **/
     @inject('AppState')
-    private _appState: AppStateService;
+    private _appState: AppState;
 
     /** @private **/
     @inject('Search')

@@ -8,8 +8,8 @@
         'ui.bootstrap',
 
         // These are the containers you want to enable
-        require('../containers/dashboard'),
-        require('../containers/issues')
+        //require('../containers/dashboard'),
+        //require('../containers/issues')
     ])
 
     // Content view layout (header+body)

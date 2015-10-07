@@ -2,9 +2,9 @@ const moduleName = 'servicesModule';
 
 angular.module(moduleName, [])
 
-.service('AppState', require('./app-state'))
-.service('NavManager', require('./nav-manager'))
-.service('MsgBus', require('./msg-bus'))
+.service('AppState', require('./helpers/app-state'))
+.service('NavManager', require('./helpers/nav-manager'))
+.service('MsgBus', require('./helpers/msg-bus'))
 
 .service('Search', require('./rest/search'))
 .service('Issues', require('./rest/issues'))

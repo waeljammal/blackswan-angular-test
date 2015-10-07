@@ -1,4 +1,4 @@
-export class Issue {
+export class Repository {
     public id: string;
 
     constructor(data) {

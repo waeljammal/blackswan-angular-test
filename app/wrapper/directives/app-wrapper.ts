@@ -1,5 +1,5 @@
 import {inject, directive} from 'op/metadata';
-import {AppStateService} from '../../common/services/services';
+import {AppStateService as AppState} from '../../common/services/services';
 
 /**
  * Application wrapper directive, renders the main viewport.
@@ -24,7 +24,7 @@ class ViewportDirective implements ng.IDirective {
      * @private
      */
     @inject('AppState')
-    private _appState: AppStateService;
+    private _appState: AppState;
 
     link(scope) {
         scope.state = this._appState;

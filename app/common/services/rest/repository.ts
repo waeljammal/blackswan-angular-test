@@ -4,7 +4,7 @@ import {inject, service} from 'op/metadata';
  * Used to load a single repository from the Google public API.
  */
 @service()
-class RepositoryService implements IRepositoryService {
+export class RepositoryService implements IRepositoryService {
     /** @private **/
     @inject()
     private $q: ng.IQService;
@@ -48,4 +48,4 @@ class RepositoryService implements IRepositoryService {
     }
 }
 
-export = RepositoryService;
+module.exports = RepositoryService;

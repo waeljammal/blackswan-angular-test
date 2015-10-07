@@ -4,11 +4,11 @@
 
 import {service} from 'op/metadata';
 
-class NavItem {
+export class NavItem {
 
-    public label: string;
-    public path: string;
-    public root: string;
+    public label:string;
+    public path:string;
+    public root:string;
 
     private _children = [];
     private currentRoute = undefined;
@@ -49,7 +49,7 @@ class NavItem {
  * Provides utilities for managing navigation state and remembering parameters.
  */
 @service()
-class NavManagerService {
+export class NavManagerService {
     /** @private **/
     private _mainNav = [];
     /** @private **/
@@ -188,4 +188,4 @@ class NavManagerService {
     }
 }
 
-export = NavManagerService;
+module.exports = NavManagerService;

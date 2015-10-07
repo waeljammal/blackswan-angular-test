@@ -10,7 +10,7 @@ export class MsgBus {
      * @private
      */
     @inject()
-    private $rootScope: any;
+    private $rootScope:any;
 
     /**
      * Emits a message on the $rootScope.
@@ -30,7 +30,7 @@ export class MsgBus {
      * @param func {Function} The callback function to invoke.
      * @param scope {$scope} Optional scope is used to unbind the listener on $destroy.
      */
-    onMsg(msg: string, func: Function, scope?: ng.IScope) {
+    onMsg(msg:string, func:Function, scope?:ng.IScope) {
         let unbind = this.$rootScope.$on(msg, func);
 
         if (scope) {
@@ -40,3 +40,5 @@ export class MsgBus {
 }
 
 module.exports = MsgBus;
+
+export default MsgBus;
