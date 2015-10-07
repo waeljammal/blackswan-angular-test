@@ -1,6 +1,5 @@
-import {IssuesService} from '../../../common/services/rest/rest';
-
-import helpers = require('../../../common/services/helpers/helpers');
+import {IssuesService} from 'op/rest';
+import * as helpers from 'op/helpers';
 
 /**
  * Route configuration for the issues glue container.
@@ -11,7 +10,7 @@ class RouteConfig {
      *
      * @param $stateProvider
      */
-    constructor($stateProvider) {
+    constructor($stateProvider: ng.ui.IStateProvider) {
         $stateProvider.state('top.repo.issues', {
             url: '/issues',
             sticky: true,
@@ -24,9 +23,9 @@ class RouteConfig {
                 }
             },
             resolve: {
-                setupIssues: function($state, $timeout: ng.ITimeoutService, resolveRepo,
-                                      AppState: helpers.AppStateService,
-                                      Issues: IssuesService, NavManager)
+                setupIssues: function(resolveRepo, $state: ng.ui.IStateService, $timeout: ng.ITimeoutService,
+                                      AppState: helpers.AppStateService, Issues: IssuesService,
+                                      NavManager: helpers.NavManagerService)
                 {
                     // We wont load issues or redirect if NavManager already contains params for issues.issue.
                     if (AppState.currentRepo && !NavManager.getParams('top.repo.issues.issue')) {
@@ -56,7 +55,9 @@ class RouteConfig {
             sticky: true,
             deepStateRedirect: false,
             resolve: {
-                setupIssue: function($stateParams: any, preLoad: any, AppState: helpers.AppStateService, Issues, setupIssues: any) {
+                setupIssue: function($stateParams: any, preLoad: any,
+                                     AppState: helpers.AppStateService,
+                                     Issues: IssuesService, setupIssues: any) {
                     Issues.currentIssue = Issues.find($stateParams.issue);
                 }
             }

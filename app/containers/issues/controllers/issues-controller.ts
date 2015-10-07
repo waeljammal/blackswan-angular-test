@@ -1,6 +1,7 @@
 import {inject, controller} from 'op/metadata';
-import {IssuesService} from '../../../common/services/rest/rest';
-import {Issue} from '../../../common/models/models';
+import {IssuesService} from 'op/rest';
+import {Issue} from 'op/model';
+import {NavManagerService} from 'op/helpers';
 
 /**
  * Issues Controller glues all the different modules together.
@@ -20,11 +21,11 @@ class IssuesController {
 
     /** @private **/
     @inject('NavManager')
-    private _nav;
+    private _nav: NavManagerService;
 
     /** @private **/
     @inject()
-    private $state;
+    private $state: ng.ui.IStateService;
 
     constructor() {
         this.selectIssue = (d: Issue) => { this.doSelectIssue(d); };

@@ -1,8 +1,10 @@
+import * as helper from 'op/helpers';
+
 /**
  * Validates routes
  */
 class RouteValidator {
-    constructor($state, $timeout: ng.ITimeoutService, $rootScope, NavManager) {
+    constructor($state: ng.ui.IState, $rootScope: op.IRootScope, NavManager: helper.NavManagerService) {
         $rootScope.$state = $state;
 
         // TODO Handle state change errors cleanly.

@@ -7,7 +7,7 @@ class RouteConfig {
      *
      * @param $stateProvider
      */
-    constructor($stateProvider) {
+    constructor($stateProvider: ng.ui.IStateProvider) {
         $stateProvider.state('top.repo.dashboard', {
             url: '/dashboard',
             sticky: true,

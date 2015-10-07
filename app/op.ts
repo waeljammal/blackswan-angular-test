@@ -1,1 +1,1 @@
-/// <reference path="./common/common.ts" />
+/// <reference path="./common/index.ts" />

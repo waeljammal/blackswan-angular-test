@@ -1,4 +1,3 @@
-///<reference path="../../../../typings/angularjs/angular.d.ts"/>
 import {directive, inject} from 'op/metadata';
 
 @directive()
@@ -11,10 +10,10 @@ class PanelDirective implements ng.IDirective {
      *
      * @type {string}
      */
-    public restrict = 'AE';
+    public restrict: string = 'AE';
 
     /** @private **/
-    public transclude = true;
+    public transclude: boolean = true;
 
     /**
      * titleLabel: Title to appear in the header. </br>
@@ -22,7 +21,7 @@ class PanelDirective implements ng.IDirective {
      *
      * @type {{titleLabel: string, actions: string}}
      */
-    public scope = {
+    public scope: any = {
         titleLabel: '@',
         actions: '='
     };

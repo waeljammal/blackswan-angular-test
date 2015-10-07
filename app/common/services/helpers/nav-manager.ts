@@ -10,10 +10,10 @@ export class NavItem {
     public path: string;
     public root: string;
 
-    private _children = [];
-    private currentRoute = undefined;
+    private _children: Array<NavItem> = [];
+    private currentRoute: string = undefined;
 
-    constructor(label, path, root) {
+    constructor(label: string, path: string, root: string) {
         this.label = label;
         this.path = path;
         this.root = root;
@@ -26,7 +26,7 @@ export class NavItem {
      *
      * @returns {Array<NavItem>}
      */
-    get children() {
+    get children(): Array<NavItem> {
         return this._children;
     }
 
@@ -37,7 +37,7 @@ export class NavItem {
      * @param {string} path Path to navigate to
      * @returns {NavItem} Self
      */
-    sub(label, path, root) {
+    sub(label: string, path: string, root: string): NavItem {
         let entry = new NavItem(label, path, root);
         this.children.push(entry);
 
@@ -50,23 +50,28 @@ export class NavItem {
  */
 @service()
 export class NavManagerService {
+    /**
+     * Stores the current route.
+     */
+    public currentRoute: string;
+
     /** @private **/
-    private _mainNav = [];
+    private _mainNav: Array<NavItem> = [];
     /** @private **/
-    private params = {};
+    private params: any = {};
     /** @private **/
-    private _mainNavVisible = false;
+    private _mainNavVisible: boolean = false;
     /** @private **/
-    private _subNavVisible = false;
+    private _subNavVisible: boolean = false;
     /** @private **/
-    private _enabled = true;
+    private _enabled: boolean= true;
 
     /**
      * Shows or hides the main navigation.
      *
      * @param {boolean} value
      */
-    set mainNavVisible(value) {
+    set mainNavVisible(value: boolean) {
         this._mainNavVisible = value;
     }
 
@@ -75,7 +80,7 @@ export class NavManagerService {
      *
      * @returns {boolean}
      */
-    get mainNavVisible() {
+    get mainNavVisible(): boolean {
         return this._mainNavVisible;
     }
 
@@ -84,7 +89,7 @@ export class NavManagerService {
      *
      * @param {boolean} value
      */
-    set subNavVisible(value) {
+    set subNavVisible(value: boolean) {
         this._subNavVisible = value;
     }
 
@@ -93,7 +98,7 @@ export class NavManagerService {
      *
      * @returns {boolean}
      */
-    get subNavVisible() {
+    get subNavVisible(): boolean {
         return this._subNavVisible;
     }
 
@@ -102,7 +107,7 @@ export class NavManagerService {
      *
      * @param {boolean} value
      */
-    set enabled(value) {
+    set enabled(value: boolean) {
         this._enabled = value;
     }
 
@@ -111,14 +116,14 @@ export class NavManagerService {
      *
      * @returns {boolean}
      */
-    get enabled() {
+    get enabled(): boolean {
         return this._enabled;
     }
 
     /**
      * @returns {Array<NavItem>} Main navigation data
      */
-    get mainNav() {
+    get mainNav(): Array<NavItem> {
         return this._mainNav;
     }
 
@@ -128,15 +133,15 @@ export class NavManagerService {
      * @param {string} state State to update
      * @param {Object} params New parameters
      */
-    updateParams(state, params) {
+    updateParams(state: string, params: Object) {
         this.params[state] = params;
     }
 
     /**
-     * @param {Object} state State to get current parameters for
+     * @param {string} state State to get current parameters for
      * @returns {Object} Parameters
      */
-    getParams(state) {
+    getParams(state: string): any {
         return angular.copy(this.params[state]);
     }
 
@@ -144,12 +149,14 @@ export class NavManagerService {
      * Updates the last parameters for the given state
      *
      * @param {string} state State to update
-     * @param {Object} params New parameters
      */
-    deleteParams(state) {
+    deleteParams(state: string) {
         delete(this.params[state]);
     }
 
+    /**
+     * Deletes all cached parameters
+     */
     deleteAllParams() {
         this.params = {};
     }
@@ -161,7 +168,7 @@ export class NavManagerService {
      * @param path {string} Path to navigate to
      * @param root {string} The root path this entry belongs to (top level parent)
      */
-    registerMain(label, path, root) {
+    registerMain(label: string, path: string, root: string): NavItem {
         let entry = new NavItem(label, path, root);
         this.mainNav.push(entry);
 
@@ -183,7 +190,7 @@ export class NavManagerService {
      * @param {string} toState State that was requested
      * @param {Object} toParams The parameters of the requested state
      */
-    captureDefaultParameters(toState, toParams) {
+    captureDefaultParameters(toState: any, toParams: any) {
         // Do Nothing
     }
 }

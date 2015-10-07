@@ -18,7 +18,7 @@ export class MsgBus {
      * @param msg {string} The event name.
      * @param data {*} The payload to send.
      */
-    emitMsg(msg, data) {
+    emitMsg(msg: string, data: any) {
         data = data || {};
         this.$rootScope.$emit(msg, data);
     }

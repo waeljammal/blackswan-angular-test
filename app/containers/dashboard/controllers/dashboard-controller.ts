@@ -34,10 +34,10 @@ class DashboardController {
     private _issuesService: IssuesService;
 
     @inject('NavManager')
-    private _nav: any;
+    private _nav: helpers.NavManagerService;
 
     @inject()
-    private $state;
+    private $state: ng.ui.IStateService;
 
     constructor($scope) {
         /**
@@ -73,7 +73,7 @@ class DashboardController {
     /**
      * Returns the current repository.
      *
-     * @returns {Object|undefined}
+     * @returns {Repository}
      */
     get repo(): Repository {
         return this._appState.currentRepo;
@@ -129,7 +129,7 @@ class DashboardController {
      *
      * @param data {Object} Repository.
      */
-    updateCharts(data: Repository) {
+    updateCharts(data: Repository): void {
         if (data === undefined) {
             return;
         }

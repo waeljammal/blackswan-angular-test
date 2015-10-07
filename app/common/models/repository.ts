@@ -8,6 +8,9 @@ export class Repository {
     public open_issues: number;
     public name: string;
     public owner: RepositoryOwner;
+    public size: number;
+    public subscribers_count: number;
+    public watchers_count: number;
 
     constructor(data) {
         this.full_name = data.full_name;
@@ -18,6 +21,9 @@ export class Repository {
         this.name = data.name;
         this.full_name = data.full_name;
         this.owner = new RepositoryOwner(data.owner);
+        this.size = data.size;
+        this.subscribers_count = data.subscribers_count;
+        this.watchers_count = data.watchers_count;
     }
 
     static parse1 (data): Array<Repository> {

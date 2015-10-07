@@ -27,12 +27,12 @@ class HeaderController {
 
     /** @private **/
     @inject()
-    public $state;
+    public $state: ng.ui.IStateService;
 
     /** @private **/
     // TODO Strongly type the navmanager
     @inject('NavManager')
-    private _nav: any;
+    private _nav: helpers.NavManagerService;
 
     /** @private **/
     @inject('AppState')
@@ -45,8 +45,6 @@ class HeaderController {
     /** @private **/
     @inject('MsgBus')
     private _msgBus: helpers.MsgBus;
-
-
 
     constructor() {
         // Listen for repo changes
