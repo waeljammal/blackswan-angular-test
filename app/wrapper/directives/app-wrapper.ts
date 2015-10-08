@@ -1,6 +1,5 @@
 import {inject, directive} from 'common/globals/decorators';
-
-import * as helpers from "common/services/helpers"
+import * as helpers from 'common/services/helpers';
 
 /**
  * Application wrapper directive, renders the main viewport.
