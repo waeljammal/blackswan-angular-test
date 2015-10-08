@@ -1,4 +1,4 @@
 // Support AMD require
-declare module 'op/helpers' {
+declare module 'common/services/helpers' {
     export * from 'helpers';
 }

@@ -1,4 +1,4 @@
-import {directive, inject} from 'op/metadata';
+import {directive, inject} from 'common/globals/decorators';
 
 @directive()
 class PanelDirective implements ng.IDirective {

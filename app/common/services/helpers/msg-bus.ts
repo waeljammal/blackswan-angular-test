@@ -1,4 +1,4 @@
-import {inject, service} from 'op/metadata';
+import {inject, service} from 'common/globals/decorators';
 
 /**
  * This bus allows you to register event listeners and emit

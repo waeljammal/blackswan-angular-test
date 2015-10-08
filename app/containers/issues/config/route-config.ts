@@ -1,5 +1,5 @@
-import {IssuesService} from 'op/rest';
-import * as helpers from 'op/helpers';
+import {IssuesService} from 'common/services/rest';
+import * as helpers from 'common/services/helpers';
 
 /**
  * Route configuration for the issues glue container.

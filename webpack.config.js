@@ -79,10 +79,10 @@ module.exports = {
             bowerComponentsPath + "/Chart.js"
         ],
         alias: {
-            'op/metadata': __dirname + "/app/common/globals/decorators/metadata.ts",
-            'op/helpers': __dirname + "/app/common/services/helpers/helpers.ts",
-            'op/model': __dirname + "/app/common/models/models.ts",
-            'op/rest': __dirname + "/app/common/services/rest/rest.ts",
+            'common/globals/decorators': __dirname + "/app/common/globals/decorators/metadata.ts",
+            'common/services/helpers': __dirname + "/app/common/services/helpers/helpers.ts",
+            'common/models': __dirname + "/app/common/models/models.ts",
+            'common/services/rest': __dirname + "/app/common/services/rest/rest.ts",
 
             'style': __dirname + "/public/ui-assets/style/main.scss",
 

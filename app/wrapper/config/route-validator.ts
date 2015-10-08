@@ -1,4 +1,4 @@
-import * as helper from 'op/helpers';
+import * as helper from 'common/services/helpers';
 
 /**
  * Validates routes

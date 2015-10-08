@@ -1,8 +1,7 @@
-import {inject, controller} from 'op/metadata';
-import {SearchService} from '../../common/services/rest/rest';
-import {Repository} from '../../common/models/models';
-
-import helpers = require('../../common/services/helpers/helpers');
+import {inject, controller} from 'common/globals/decorators';
+import {SearchService} from 'common/services/rest';
+import {Repository} from 'common/models';
+import * as helpers from 'common/services/helpers';
 
 /**
  * Global header controller for the site.

@@ -1,5 +1,5 @@
-import * as rest from 'op/rest';
-import * as helper from 'op/helpers';
+import * as rest from 'common/services/rest';
+import * as helper from 'common/services/helpers';
 
 /**
  * Configures routes for the wrapper.

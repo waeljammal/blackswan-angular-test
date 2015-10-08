@@ -1,4 +1,4 @@
-declare module 'op/metadata' {
+declare module 'common/globals/decorators' {
     export function inject(...keys);
     export function controller(...values:string[]):any;
     export function log():void;

@@ -1,8 +1,7 @@
-import {inject, controller} from 'op/metadata';
-import {IssuesService} from '../../../common/services/rest/rest';
-import {Issue, Repository} from '../../../common/models/models';
-
-import helpers = require('../../../common/services/helpers/helpers');
+import {inject, controller} from 'common/globals/decorators';
+import {IssuesService} from 'common/services/rest';
+import {Issue, Repository} from 'common/models';
+import * as helpers from 'common/services/helpers';
 
 /**
  * Dashboard Controller glues all the different modules together.

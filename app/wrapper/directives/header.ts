@@ -1,4 +1,4 @@
-import {directive} from 'op/metadata';
+import {directive} from 'common/globals/decorators';
 
 /**
  * Header directive renders the global header.

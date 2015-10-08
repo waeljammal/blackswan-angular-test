@@ -2,7 +2,7 @@
  * Represents a navigation state
  */
 
-import {service} from 'op/metadata';
+import {service} from 'common/globals/decorators';
 
 export class NavItem {
 

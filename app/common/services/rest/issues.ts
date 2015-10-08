@@ -1,8 +1,8 @@
 /// <reference path='issues.d.ts' />
 
-import {inject, service} from 'op/metadata';
-import * as helpers from 'op/helpers';
-import * as model from 'op/model';
+import {inject, service} from 'common/globals/decorators';
+import * as helpers from 'common/services/helpers';
+import * as model from 'common/models';
 
 /**
  * This services provides functions to load all issues for the active

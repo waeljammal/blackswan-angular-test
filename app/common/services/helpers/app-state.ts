@@ -1,7 +1,7 @@
-import {inject, service} from 'op/metadata';
-import {Repository} from '../../models/models';
+import {inject, service} from 'common/globals/decorators';
+import {Repository} from 'common/models';
 
-import * as helpers from  'op/helpers';
+import * as helpers from  'common/services/helpers';
 
 /**
  * Stores the current app state.

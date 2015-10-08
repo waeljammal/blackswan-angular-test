@@ -1,5 +1,5 @@
-import {inject, service} from 'op/metadata';
-import {Repository} from '../../models/models';
+import {inject, service} from 'common/globals/decorators';
+import {Repository} from 'common/models';
 
 /**
  * Used to load a single repository from the Google public API.

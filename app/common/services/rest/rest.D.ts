@@ -2,6 +2,6 @@
 /// <reference path="./search.d.ts" />
 /// <reference path="./repository.d.ts" />
 
-declare module 'op/rest' {
+declare module 'common/services/rest' {
     export * from 'rest';
 }

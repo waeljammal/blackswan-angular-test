@@ -2,8 +2,8 @@
  * This service exposes the github search API and lets you find a
  * repository by it's full name from the cached list.
  */
-import {inject, service} from 'op/metadata';
-import {Repository} from '../../models/models';
+import {inject, service} from 'common/globals/decorators';
+import {Repository} from 'common/models';
 
 @service()
 export class SearchService {

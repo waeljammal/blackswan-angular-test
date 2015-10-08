@@ -1,4 +1,4 @@
-import {Repository} from '../../models/models';
+import {Repository} from 'common/models';
 
 interface IRepositoryService {
     /**

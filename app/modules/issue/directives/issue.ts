@@ -1,4 +1,4 @@
-import {directive} from 'op/metadata';
+import {directive} from 'common/globals/decorators';
 
 @directive()
 class IssueDirective implements ng.IDirective {

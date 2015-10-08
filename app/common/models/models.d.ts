@@ -1,3 +1,3 @@
-declare module 'op/model' {
+declare module 'common/models' {
     export * from 'models';
 }

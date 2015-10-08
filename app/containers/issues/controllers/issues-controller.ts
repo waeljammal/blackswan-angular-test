@@ -1,7 +1,7 @@
-import {inject, controller} from 'op/metadata';
-import {IssuesService} from 'op/rest';
-import {Issue} from 'op/model';
-import {NavManagerService} from 'op/helpers';
+import {inject, controller} from 'common/globals/decorators';
+import {IssuesService} from 'common/services/rest';
+import {Issue} from 'common/models';
+import {NavManagerService} from 'common/services/helpers';
 
 /**
  * Issues Controller glues all the different modules together.

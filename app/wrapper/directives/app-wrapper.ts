@@ -1,6 +1,6 @@
-import {inject, directive} from 'op/metadata';
+import {inject, directive} from 'common/globals/decorators';
 
-import helpers = require('../../common/services/helpers/helpers');
+import * as helpers from "common/services/helpers"
 
 /**
  * Application wrapper directive, renders the main viewport.
